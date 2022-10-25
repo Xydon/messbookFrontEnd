@@ -2,11 +2,13 @@ import React from "react";
 
 import "./Student.css";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function StudentAdd() {
 	let arr = [];
 	for (let i = 0; i < 20; ++i) arr.push(i);
+	const navigate = useNavigate(); 
+
 	return (
 		<div className="Student row">
 			<div className="Student__sidebar"></div>
@@ -56,7 +58,9 @@ function StudentAdd() {
 
 				<div className="Student__studentList__box">
 					{arr.map((val) => (
-						<div className="Student__studentList__row mb-1 flex vc">
+						<div className="Student__studentList__row mb-1 flex vc"
+							onClick={() => {navigate('/20075087')}}
+						>
 							<div className="studentList__rollNo__box">
 								<p className="studentList__rollNo cc_14 mr-2">20075087</p>
 							</div>

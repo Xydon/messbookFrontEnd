@@ -16,9 +16,6 @@
 	padding-right: calc(var(--q) * 12);
 }
 
-.ScreenHeading {
-	margin-bottom: calc(var(--q) * 10);
-}
 
 .content__form__box {
 	width : 400px; 

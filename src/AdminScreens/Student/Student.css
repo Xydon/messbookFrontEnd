@@ -20,6 +20,7 @@
 
 .Student__content .content__heading__row {
 	justify-content: space-between;
+	margin-bottom: calc(var(--q) * 10);
 }
 
 .content__heading__row .heading__AddStudentButton {
@@ -28,9 +29,6 @@
   background-color: var(--black_4);
 }
 
-.ScreenHeading {
-	margin-bottom: calc(var(--q) * 10);
-}
 
 .Student__filterControl__row {
 	min-width : 60%; 
