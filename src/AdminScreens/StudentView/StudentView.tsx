@@ -26,8 +26,12 @@ function StudentView() {
 					<p className="cc_22 medium mb-1">Phone Number</p>
           <p className="cc_18">+91 9369074016</p>
 				</div>
-				<div className="mb-4">
+				<div className="mb-6">
 					<p className="cc_22 medium mb-1">Department</p>
+          <p className="cc_18">C.S.E</p>
+				</div>
+				<div className="mb-6">
+					<p className="cc_22 medium mb-1">C-Mail Id</p>
           <p className="cc_18">C.S.E</p>
 				</div>
 			</div>

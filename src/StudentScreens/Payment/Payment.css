@@ -1,0 +1,28 @@
+.Payment .Dashboard__heading__row {
+  justify-content: space-between;
+}
+
+.Payment__MakePaymentBtn {
+  background-color: black;
+}
+
+.Payment__card {
+  max-width : 560px; 
+  background-color : var(--white_6); 
+}
+
+.Payment__card__row {
+  justify-content: space-between;
+}
+
+.Payment__card__chevron__box {
+  cursor : pointer; 
+}
+
+.Payment__card__statusText--pending {
+  color : red;
+}
+
+.Payment__card__statusText--done {
+  color : green; 
+}

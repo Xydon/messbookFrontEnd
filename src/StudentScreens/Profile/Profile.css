@@ -1,0 +1,34 @@
+.Profile .Dashboard__heading__row {
+  margin-bottom: calc(var(--q) * 4);
+}
+
+.Profile .infoTag {
+	width: fit-content;
+}
+
+.Profile .infoTag__warning {
+	background-color: rgb(255, 227, 227);
+}
+
+.Profile .infoTag__warning p {
+	color: red;
+}
+
+.Profile .infoTag__paid p {
+	color: green;
+}
+
+.Profile .infoTag__paid {
+	background-color: rgb(227, 255, 227);
+}
+
+
+.Profile__subheading {
+  color : var(--Black_6); 
+}
+.Profile__image{
+  width: 86px;
+  height: 86px;
+  border: 1px solid rgb(172, 172, 172);
+  border-radius: 50%;
+}

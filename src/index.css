@@ -23,8 +23,18 @@
 	padding-right: calc(var(--q) * 12);
 	height : 100%; 
 	overflow: auto;
+	position : relative; 
 }
 
 .Dashboard__heading__row {
   margin-bottom : calc(var(--q) *10); 
+}
+
+.Dashboard__content__overlay {
+	position : absolute; 
+	top : 0; 
+	left : 0; 
+	width : 100%; 
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.136);
 }
