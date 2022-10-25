@@ -14,6 +14,8 @@
 	padding-top: calc(var(--q) * 12);
 	padding-left: calc(var(--q) * 12);
 	padding-right: calc(var(--q) * 12);
+	height : 100%; 
+	overflow: auto;
 }
 
 .Student__content .content__heading__row {
@@ -28,4 +30,48 @@
 
 .ScreenHeading {
 	margin-bottom: calc(var(--q) * 10);
+}
+
+.Student__filterControl__row {
+	min-width : 50%; 
+}
+
+.Student .filterControl__name {
+	width : 40%; 
+}
+
+.Student .filterControl__semester {
+	width : 20%; 
+}
+
+.Student .filterControlApplyButton {
+	background-color: black;
+	height : 44px; 
+	padding : 0 calc(var(--q) * 4); 
+}
+
+
+
+.Student__studentList__box {
+	overflow: auto;
+	max-height: 500px;
+}
+
+.Student__studentList__row {
+	cursor:pointer; 
+}
+
+.Student .studentList__info__box {
+	width : 700px; 
+}
+
+.Student .studentList__info {
+	width: 100%; 	
+	height : 44px; 
+	border-radius : var(--q); 
+	background-color: var(--white_6);
+}
+
+.Student .studentList__info {
+	justify-content: space-between;
 }

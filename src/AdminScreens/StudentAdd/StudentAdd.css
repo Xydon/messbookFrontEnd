@@ -23,6 +23,7 @@
 .content__form__box {
 	width : 400px; 
 }
+
 .content__form__box .form__input { 
 	width: 100%;
 	background-color: var(--white_6);

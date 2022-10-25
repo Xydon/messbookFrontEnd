@@ -4308,10 +4308,25 @@ a {
   background-color: red;
 }
 
+
+.label_white > p {
+  color : white; 
+}
+
 .input_size_m {
   height : 44px; 
 }
 
-.label_white > p {
-  color : white; 
+.form__input { 
+	width: 100%;
+	background-color: var(--white_6);
+	border : 1px solid transparent; 
+	padding-left : calc(2*var(--q)); 
+	font-family: "Inter";
+	font-size : 14px; 
+}
+
+.form__input:focus {
+	border : 1px solid gray; 
+	outline : none; 
 }
