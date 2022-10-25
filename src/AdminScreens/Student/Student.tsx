@@ -31,6 +31,11 @@ function StudentAdd() {
 
 				<div className="Student__filterControl__row row mb-6">
 					<input
+						type="number"
+						className="input_size_m round-8 mb-2 mr-1 form__input filterControl__rollNumber"
+						placeholder="roll number"
+					/>
+					<input
 						type="text"
 						className="input_size_m round-8 mb-2 mr-1 form__input filterControl__name"
 						placeholder="name"

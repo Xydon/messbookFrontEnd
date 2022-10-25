@@ -33,7 +33,11 @@
 }
 
 .Student__filterControl__row {
-	min-width : 50%; 
+	min-width : 60%; 
+}
+
+.Student .filterControl__rollNumber {
+	width : 15%; 
 }
 
 .Student .filterControl__name {
