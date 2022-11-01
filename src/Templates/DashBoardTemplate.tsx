@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import DetailsGroup from "../ProjectComponents/DetailsGroup";
 
 import "./DashBoardTemplate.css";
 
@@ -64,18 +65,14 @@ function Sidebar(props: { navList: Array<SidebarNavType> }) {
 
 			<div className="LinkRow mt-4 flex hc pr-2">
 				<div className="LinkBox">
-					<SidebarNavLink
-						icon={<p>-</p>}
-						link="/"
-						label="dashboard"
-						isActive={isLinkActive("/")}
-					/>
-					<SidebarNavLink
-						icon={<p>-</p>}
-						link="/student"
-						label="students"
-						isActive={isLinkActive("/student")}
-					/>
+					{props.navList.map((linkInfo) => (
+						<SidebarNavLink
+							icon={linkInfo.icon}
+							link={linkInfo.link}
+							label={linkInfo.label}
+							isActive={isLinkActive(linkInfo.link)}
+						/>
+					))}
 				</div>
 			</div>
 		</div>
@@ -105,8 +102,6 @@ function DashBoardTemplate(
 				</div>
 				{props.children}
 			</div>
-
-			
 		</div>
 	);
 }

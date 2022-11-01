@@ -40,6 +40,11 @@
   border : 1px solid rgb(238, 238, 238); 
   background-color: white;
   box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.158);
+  transition: box-shadow 0.3s;
+}
+
+.LogoutButton:hover {
+  box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.18);
 }
 
 .LinkRow {
@@ -63,11 +68,4 @@
 
 .SideboardNavLink:hover {
   transform: scale(1.05);
-}
-
-.Sidebar {
-  /* width :  */
-}
-
-.SidebarNav__icon__box {
 }
