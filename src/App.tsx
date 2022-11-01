@@ -10,13 +10,15 @@ import Profile from "./StudentScreens/Profile/Profile";
 import Payment from "./StudentScreens/Payment/Payment";
 import DashBoardTemplate from "./Templates/DashBoardTemplate";
 import Mess from "./StudentScreens/Mess/Mess";
+import MailView from "./MailScreens/MailView/MailView";
 
 function StudentRoutes() {
   return (
     <Routes>
-			<Route path={"/lkasdf"} element={<Profile />} />
+			<Route path={"/"} element={<Profile />} />
 			<Route path={"/student"} element={<Student/>} />
-			<Route path={"/"} element={<Mess/>} />
+			<Route path={"/mess"} element={<Mess/>} />
+			<Route path={"/mailview"} element={<MailView/>} />
 			<Route path={":studentRoll"} element={<StudentView />} />
 			<Route path={"/studentAdd"} element={<StudentAdd />} />
 			<Route path={"/asdf"} element={<Payment />}/>

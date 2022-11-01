@@ -2,10 +2,15 @@
 
 * {
   font-family : 'Inter'; 
+	line-height : 1.6;
 }
 
 body {
-	background-color: #fff ;
+	background-color: #fff;
+}
+
+.cp {
+	cursor : pointer; 
 }
 
 .Dashboard {
@@ -32,7 +37,7 @@ body {
 }
 
 .Dashboard__heading__row {
-  margin-bottom : calc(var(--q) *10); 
+  margin-bottom : calc(var(--q) * 7); 
 }
 
 .Dashboard__content__overlay {
