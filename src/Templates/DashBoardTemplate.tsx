@@ -92,7 +92,7 @@ function DashBoardTemplate(
 ) {
 	return (
 		<div className="Dashboard">
-			<Sidebar navList={[]} />
+			<Sidebar navList={props.navList} />
 
 			<div className="Dashboard__content">
 				<div className="Dashboard__heading__row">

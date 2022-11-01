@@ -3358,6 +3358,10 @@
   display: flex;
 }
 
+.col {
+  flex : 1; 
+}
+
 .col-1 {
   flex-shrink: 0;
   flex-basis: 8.3333333333%;
@@ -4246,6 +4250,15 @@ a {
 .flex {
 	display: flex;
 }
+
+.dir-col {
+  flex-direction: column;
+}
+
+.grow-1 {
+  flex-grow: 1;
+}
+
 .button,
 .button_size_l,
 .button_size_m,
@@ -4338,4 +4351,8 @@ a {
 
 .relative {
   position : relative; 
+}
+
+.bg_black {
+  background-color: black;
 }

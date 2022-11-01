@@ -1,0 +1,15 @@
+
+.FeedbackCardContainer {
+  max-height : 500px; 
+  overflow : auto; 
+}
+
+.messAbsentInput {
+  min-width : 120px; 
+  height : 120px; 
+  border-radius: 32px;
+  background-color: var(--white_6);
+  text-align: center;
+  font-size: 22px;
+  padding : 0 16px; 
+}

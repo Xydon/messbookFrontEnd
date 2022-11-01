@@ -1,0 +1,25 @@
+.AbsentCalculator {
+  width : 472px; 
+  height : 416px; 
+  border : 1px solid lightgray; 
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+.dateContainer::-webkit-scrollbar {
+  width : 0; 
+}
+
+.dateNumberBox {
+  height : 44px; 
+  width : 44px; 
+  border-radius : 23px; 
+  border : 1px solid lightgray; 
+}
+
+.DateListRow {
+  margin-bottom: 4px;
+}
+
+.dateContainer {
+  overflow : auto; 
+}

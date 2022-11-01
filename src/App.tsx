@@ -9,6 +9,29 @@ import StudentView from "./AdminScreens/StudentView/StudentView";
 import Profile from "./StudentScreens/Profile/Profile";
 import Payment from "./StudentScreens/Payment/Payment";
 import DashBoardTemplate from "./Templates/DashBoardTemplate";
+import Mess from "./StudentScreens/Mess/Mess";
+
+function StudentRoutes() {
+  return (
+    <Routes>
+			<Route path={"/lkasdf"} element={<Profile />} />
+			<Route path={"/student"} element={<Student/>} />
+			<Route path={"/"} element={<Mess/>} />
+			<Route path={":studentRoll"} element={<StudentView />} />
+			<Route path={"/studentAdd"} element={<StudentAdd />} />
+			<Route path={"/asdf"} element={<Payment />}/>
+		</Routes>
+  )
+}
+
+function AdminRoutes() {
+  return (
+    <Routes>
+			<Route path={"/abcd"} element={<Profile />} />
+		</Routes>
+  )
+}
+
 
 function App() {
 	useEffect(() => {
@@ -20,17 +43,17 @@ function App() {
 			});
 		}
 	});
+	
+	const type = "student"; 
+
+	let Comp = <></>; 
+
+	//@ts-ignore
+	if(type == 'student') Comp = <StudentRoutes/>; 
+	else Comp = <AdminRoutes/>
+
 	return (
-		<Routes>
-			<Route path={"/lkasdf"} element={<Profile />} />
-			<Route path={"/student"} element={<Student/>} />
-			<Route path={"/"} element={<DashBoardTemplate navList={[]} heading={"heading"}>
-				
-			</DashBoardTemplate>} />
-			<Route path={":studentRoll"} element={<StudentView />} />
-			<Route path={"/studentAdd"} element={<StudentAdd />} />
-			<Route path={"/asdf"} element={<Payment />}/>
-		</Routes>
+		Comp
 	);
 }
 

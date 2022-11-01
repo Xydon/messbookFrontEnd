@@ -4,8 +4,8 @@ type Detail = { label: string; text: string };
 
 function DetailsList(props: Detail) {
 	return (
-		<div className="flex">
-			<p className="cc_18 DetailLabel">{props.label}</p>
+		<div className="flex mb-1">
+			<p className="cc_18 DetailLabel medium">{props.label}</p>
 			<p className="cc_18 DetailsListSeparator mr-1 ml-1">-</p>
 			<p className="cc_18 DetailText">{props.text}</p>
 		</div>
@@ -19,7 +19,7 @@ export default function DetailsGroup(props: {
 	return (
 		<div className="DetailsContainer">
 			<div className="DetailsHeadingBox">
-				<p className="cc_27">{props.heading}</p>
+				<p className="cc_27 medium">{props.heading}</p>
 			</div>
 			<div className="DetailsMapBox mt-3">
 				{props.data.map((val) => {
