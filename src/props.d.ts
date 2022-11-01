@@ -6,3 +6,10 @@ export class FeedbackProp {
   ) {}
 }
 
+export class NotificationProp {
+  constructor(
+    readonly title : string, 
+    readonly text : string, 
+    readonly date : string
+  )
+}

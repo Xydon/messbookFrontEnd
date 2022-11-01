@@ -1,0 +1,14 @@
+.notificationContainer {
+  width : 500px; 
+  height : 200px; 
+  max-height : 300px; 
+  overflow : auto; 
+}
+
+.notificationContainer::-webkit-scrollbar {
+  width : auto; 
+}
+
+.NotificationList .titleBox {
+  border-right : 1.5px solid black; 
+}
