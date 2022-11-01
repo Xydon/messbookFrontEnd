@@ -1,0 +1,73 @@
+.screen_filler {
+  width : 100%;
+  height : 100vh; 
+  overflow: hidden;
+}
+
+.LogoRow {
+  display: flex;
+  padding : calc(var(--q) * 2); 
+  border-bottom: 1px solid lightgray;
+  padding-left : calc(var(--q) * 4); 
+}
+
+.LogoText {
+  color : rgb(0, 0, 0); 
+  text-decoration: underline;
+  text-decoration-color: rgb(134, 134, 255);
+}
+
+
+.ProfileRow {
+  width : 100%; 
+}
+
+.ProfileBox {
+  width : 100%; 
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border : 1px solid lightgray; 
+}
+
+.ProfileImageBox {
+  width : 86px; 
+  height : 86px; 
+  border-radius : 200px; 
+  border : 1px solid lightgray; 
+}
+
+.LogoutButton {
+  border : 1px solid rgb(238, 238, 238); 
+  background-color: white;
+  box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.158);
+}
+
+.LinkRow {
+  max-height : 500px; 
+  width : 100%; 
+  overflow : auto; 
+  
+}
+.LinkBox {
+  padding : var(--q); 
+  cursor : pointer; 
+}
+
+.LinkBox * {
+  user-select: none;
+}
+
+.SideboardNavLink {
+  transition: all 0.5s;
+}
+
+.SideboardNavLink:hover {
+  transform: scale(1.05);
+}
+
+.Sidebar {
+  /* width :  */
+}
+
+.SidebarNav__icon__box {
+}

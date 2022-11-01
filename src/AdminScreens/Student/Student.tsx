@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Student.css";
 
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Student from "../../Entities/Student";
+
 
 function StudentAdd() {
-	let arr = [];
-	for (let i = 0; i < 20; ++i) arr.push(i);
-	const navigate = useNavigate(); 
+	const navigate = useNavigate();
+	const [data, setData] = useState<Array<Student>>([]);
+
+	useEffect(() => {
+		try {
+			axios
+			.get("http://localhost:8080/api/admin/students/1")
+			.then((val) => setData(val.data));
+		} catch(e) {
+			console.log(e); 		
+		}
+	}, []);
 
 	return (
 		<div className="Student row">
@@ -57,19 +69,23 @@ function StudentAdd() {
 				</div>
 
 				<div className="Student__studentList__box">
-					{arr.map((val) => (
-						<div className="Student__studentList__row mb-1 flex vc"
-							onClick={() => {navigate('/20075087')}}
+					{data.map((val, index) => (
+						<div
+							className="Student__studentList__row mb-1 flex vc"
+							onClick={() => {
+								navigate("/20075087");
+							}}
+							key={index}
 						>
 							<div className="studentList__rollNo__box">
-								<p className="studentList__rollNo cc_14 mr-2">20075087</p>
+								<p className="studentList__rollNo cc_14 mr-2">{val.roll_number}</p>
 							</div>
 
 							<div className="studentList__info__box">
 								<div className="studentList__info flex vc pl-4 pr-8">
-									<p className="cc_16">Snehal Kumar Singh</p>
-									<p className="cc_16">semester-1</p>
-								</div>
+									<p className="cc_16">{val.name}</p>
+									<p className="cc_16">{val.department}</p>
+								</div>	
 							</div>
 						</div>
 					))}

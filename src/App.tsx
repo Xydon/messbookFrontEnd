@@ -8,6 +8,7 @@ import Student from "./AdminScreens/Student/Student";
 import StudentView from "./AdminScreens/StudentView/StudentView";
 import Profile from "./StudentScreens/Profile/Profile";
 import Payment from "./StudentScreens/Payment/Payment";
+import DashBoardTemplate from "./Templates/DashBoardTemplate";
 
 function App() {
 	useEffect(() => {
@@ -21,10 +22,14 @@ function App() {
 	});
 	return (
 		<Routes>
-			<Route path={"/jkhfg"} element={<Profile />} />
+			<Route path={"/lkasdf"} element={<Profile />} />
+			<Route path={"/student"} element={<Student/>} />
+			<Route path={"/"} element={<DashBoardTemplate navList={[]} heading={"heading"}>
+				
+			</DashBoardTemplate>} />
 			<Route path={":studentRoll"} element={<StudentView />} />
 			<Route path={"/studentAdd"} element={<StudentAdd />} />
-			<Route path={"/"} element={<Payment></Payment>}></Route>
+			<Route path={"/asdf"} element={<Payment />}/>
 		</Routes>
 	);
 }
