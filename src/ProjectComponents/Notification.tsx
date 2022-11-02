@@ -5,7 +5,7 @@ import './Notification.css';
 
 function NotificationList() {
   return(
-    <div className="row NotificationList">
+    <div className="row NotificationList mb-1">
       <div className="col-2 titleBox">
         <p className="cc_18">Title</p>
         <p className="cc_11">12/08/2022</p>

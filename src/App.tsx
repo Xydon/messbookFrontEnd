@@ -5,21 +5,26 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import StudentAdd from "./AdminScreens/StudentAdd/StudentAdd";
 import Student from "./AdminScreens/Student/Student";
-import StudentView from "./AdminScreens/StudentView/StudentView";
+import StudentProfile from "./AdminScreens/StudentProfile/StudentProfile";
 import Profile from "./StudentScreens/Profile/Profile";
 import Payment from "./StudentScreens/Payment/Payment";
 import DashBoardTemplate from "./Templates/DashBoardTemplate";
 import Mess from "./StudentScreens/Mess/Mess";
 import MailView from "./MailScreens/MailView/MailView";
+import Invoice from "./StudentScreens/Invoice/Invoice";
+import MessProfile from "./MessScreens/Profile/MessProfile";
+import { StudentView as MessStudentView } from "./MessScreens/StudentView/StudentView";
+
 
 function StudentRoutes() {
   return (
     <Routes>
-			<Route path={"/"} element={<Profile />} />
+			<Route path={"/"} element={<Invoice />} />
+			<Route path={"/profile"} element={<Profile />} />
 			<Route path={"/student"} element={<Student/>} />
 			<Route path={"/mess"} element={<Mess/>} />
 			<Route path={"/mailview"} element={<MailView/>} />
-			<Route path={":studentRoll"} element={<StudentView />} />
+			<Route path={":studentRoll"} element={<StudentProfile />} />
 			<Route path={"/studentAdd"} element={<StudentAdd />} />
 			<Route path={"/asdf"} element={<Payment />}/>
 		</Routes>
@@ -34,6 +39,14 @@ function AdminRoutes() {
   )
 }
 
+function MessRoutes() {
+	return(
+		<Routes>
+			<Route path={'/profile'} element = {<MessProfile/>}/>
+			<Route path={'/'} element = {<MessStudentView/>} />
+		</Routes>
+	)
+}
 
 function App() {
 	useEffect(() => {
@@ -55,7 +68,7 @@ function App() {
 	else Comp = <AdminRoutes/>
 
 	return (
-		Comp
+		<MessRoutes/>
 	);
 }
 

@@ -62,3 +62,12 @@ body {
 	height : 27px; 
 	fill : #ffdf00; 
 }
+
+.profileImageBox {
+	height : 86px; 
+	width : 86px; 
+	border-radius : 100px; 
+	border : 1px solid gray; 
+	overflow : hidden; 
+	background-position: center;
+}
