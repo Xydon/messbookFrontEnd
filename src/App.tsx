@@ -15,6 +15,8 @@ import Invoice from "./StudentScreens/Invoice/Invoice";
 import MessProfile from "./MessScreens/Profile/MessProfile";
 import { StudentView as MessStudentView } from "./MessScreens/StudentView/StudentView";
 import ExtraEntry from "./MessScreens/ExtraEntry/ExtraEntry";
+import Cancellation from "./MessScreens/Cancellation/Cancellation";
+import MessInvoice from "./MessScreens/Invoice/MessInvoice";
 
 
 function StudentRoutes() {
@@ -45,7 +47,9 @@ function MessRoutes() {
 		<Routes>
 			<Route path={'/profile'} element = {<MessProfile/>}/>
 			<Route path={'/a'} element = {<MessStudentView/>} />
-			<Route path={'/'} element = {<ExtraEntry/>} />
+			<Route path={'/b'} element = {<ExtraEntry/>} />
+			<Route path={'/c'} element={<Cancellation/>} />
+			<Route path={'/'} element={<MessInvoice/>} />
 		</Routes>
 	)
 }

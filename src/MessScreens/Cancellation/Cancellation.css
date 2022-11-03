@@ -1,0 +1,20 @@
+.studentListRow {
+  width : 600px; 
+  max-height : 700px; 
+  overflow : auto; 
+}
+
+.profileImageBox {
+  height : 48px; 
+  width : 48px; 
+  border-radius : 28px; 
+  border : 1px solid gray; 
+}
+
+.studentListRow {
+  margin-left : -32px; 
+}
+
+.studentProfileListContainer {
+  margin : 12px 32px; 
+}
