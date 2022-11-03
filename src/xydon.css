@@ -4334,6 +4334,22 @@ a {
   height : 44px; 
 }
 
+.input-clear {
+  border : none; 
+  outline : none; 
+}
+
+.input-clear:focus {
+  border :none; 
+  outline : none; 
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .form__input { 
 	width: 100%;
 	background-color: var(--white_6);

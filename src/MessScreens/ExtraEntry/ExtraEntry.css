@@ -1,0 +1,8 @@
+.selectionSearchBox {
+  width : 80%; 
+}
+
+.selectionSearchBox .input-clear {
+  background-color: transparent;
+  height : 44px; 
+}
