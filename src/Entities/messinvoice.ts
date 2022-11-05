@@ -1,4 +1,4 @@
-export default class messinvoice {
+export default class Messinvoice {
 
     constructor(
       readonly semester_id : string, 

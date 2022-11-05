@@ -1,4 +1,4 @@
-export default class mess_change_application {
+export default class Mess_change_application {
 
   constructor(
     readonly mess_id : string, 

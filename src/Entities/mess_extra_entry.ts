@@ -1,4 +1,4 @@
-export default class mess_extra_entry {
+export default class Mess_extra_entry {
 
     constructor(
       readonly student_roll_number : string, 
