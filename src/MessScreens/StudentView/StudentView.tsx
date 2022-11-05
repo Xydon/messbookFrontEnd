@@ -1,6 +1,7 @@
 import React from "react";
 import Subheading from "../../ProjectComponents/Subheading";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
+import MessRouterConfig from "../routerConfig";
 
 import "./StudentView.css";
 
@@ -18,7 +19,7 @@ function StudentProfileList() {
 
 export function StudentView() {
 	return (
-		<DashBoardTemplate heading="Students" navList={[]}>
+		<DashBoardTemplate heading="Students" navList={MessRouterConfig}>
 			<Subheading text="Number of Students Enrolled - " />
 			<div className="row mb-3">
 				<div className="box">

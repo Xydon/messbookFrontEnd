@@ -19,7 +19,7 @@ function Sidebar(props: { navList: Array<SidebarNavType> }) {
 				className="SideboardNavLink flex vc m-2"
 				onClick={() => navigate(props.link)}
 			>
-				<div className="SidebarNavLink__icon__box mr-2">{props.icon}</div>
+				<div className="SidebarNavLink__icon__box mr-2"><props.icon/></div>
 				<div className="SidebarNavLink__label__box">
 					<p className="cc_16" style={props.isActive ? {} : { color: "gray" }}>
 						{props.label}

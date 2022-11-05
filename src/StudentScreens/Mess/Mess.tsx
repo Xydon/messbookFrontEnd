@@ -4,12 +4,13 @@ import DetailsGroup from "../../ProjectComponents/DetailsGroup";
 import FeedbackCard from "../../ProjectComponents/FeedbackCard";
 import ListItem from "../../ProjectComponents/ListItem";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
+import StudentRouteConfig from "../RouterConfig";
 
 import "./Mess.css";
 
 function Mess() {
 	return (
-		<DashBoardTemplate heading="Mess" navList={[]}>
+		<DashBoardTemplate heading="Mess" navList={StudentRouteConfig}>
 			<p className="cc_27 mb-8 semi_bold">Semester - 4th</p>
 
 			<div className="row">

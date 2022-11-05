@@ -1,6 +1,7 @@
 import React from "react";
 import Subheading from "../../ProjectComponents/Subheading";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
+import MessRouterConfig from "../routerConfig";
 
 import "./Cancellation.css";
 
@@ -18,7 +19,7 @@ function StudentProfileList() {
 
 function Cancellation() {
 	return (
-		<DashBoardTemplate navList={[]} heading="Cancellation">
+		<DashBoardTemplate navList={MessRouterConfig} heading="Cancellation">
 			<div className="row vc mb-8">
 				<div className="box mr-3">
 					<p className="cc_27 medium">Students not eating on - </p>

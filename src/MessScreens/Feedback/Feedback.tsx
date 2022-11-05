@@ -5,6 +5,7 @@ import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import "./Feedback.css";
 
 import { motion, useSpring } from "framer-motion";
+import MessRouterConfig from "../routerConfig";
 
 function FeedbackCard() {
 	return (
@@ -35,7 +36,7 @@ function Feedback() {
 	};
 
 	return (
-		<DashBoardTemplate navList={[]} heading="Feedbacks">
+		<DashBoardTemplate navList={MessRouterConfig} heading="Feedbacks">
 			<div className="monthFeedbackContainer">
 				<Subheading text="October" />
 				<Subheading text="Feedbacks" type="small" />

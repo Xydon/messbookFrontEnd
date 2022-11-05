@@ -26,14 +26,11 @@ import MessChangeApplication from "./AdminScreens/MessChangeApplcation/MessChang
 function StudentRoutes() {
   return (
     <Routes>
-			<Route path={"/"} element={<Invoice />} />
-			<Route path={"/profile"} element={<Profile />} />
-			<Route path={"/student"} element={<AdminStudentView/>} />
-			<Route path={"/mess"} element={<Mess/>} />
-			<Route path={"/mailview"} element={<MailView/>} />
-			<Route path={":studentRoll"} element={<StudentProfile />} />
-			<Route path={"/studentAdd"} element={<StudentAdd />} />
-			<Route path={"/asdf"} element={<Payment />}/>
+			<Route path="/invoice" element={<Invoice/>} />
+			<Route path="/mess" element={<Mess/>} />
+			<Route path="/payment" element={<Payment/>} />
+			<Route path="/profile" element={<Profile/>} />
+			<Route path={"/mail"} element={<MailView/>} />
 		</Routes>
   )
 }
@@ -46,6 +43,7 @@ function AdminRoutes() {
 			<Route path={"/asdfd"} element={<AdminMessView/>} />	
 			<Route path={"/profile"} element={<AdminMessProfile/>} />	
 			<Route path={"/semester"} element={<Semester/>} />
+			<Route path={"/mail"} element={<MailView/>} />
 			<Route path={"/"} element={<MessChangeApplication/>} />
 		</Routes>
   )
@@ -55,11 +53,12 @@ function MessRoutes() {
 	return(
 		<Routes>
 			<Route path={'/profile'} element = {<MessProfile/>}/>
-			<Route path={'/a'} element = {<MessStudentView/>} />
-			<Route path={'/b'} element = {<ExtraEntry/>} />
-			<Route path={'/c'} element={<Cancellation/>} />
+			<Route path={'/students'} element = {<MessStudentView/>} />
+			<Route path={'/extraEntry'} element = {<ExtraEntry/>} />
+			<Route path={'/cancellation'} element={<Cancellation/>} />
 			<Route path={'/messInvoice'} element={<MessInvoice/>} />
-			<Route path={'/'} element={<Feedback/>} />
+			<Route path={'/feedback'} element={<Feedback/>} />
+			<Route path={"/mail"} element={<MailView/>} />	
 		</Routes>
 	)
 }
@@ -84,7 +83,7 @@ function App() {
 	else Comp = <AdminRoutes/>
 
 	return (
-		<StudentRoutes/>
+		<MessRoutes/>
 	);
 }
 

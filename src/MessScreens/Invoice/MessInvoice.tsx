@@ -1,6 +1,7 @@
 import React from "react";
 import Subheading from "../../ProjectComponents/Subheading";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
+import MessRouterConfig from "../routerConfig";
 
 import "./MessInvoice.css";
 
@@ -42,7 +43,7 @@ function MessInvoiceCard() {
 
 function MessInvoice() {
 	return (
-		<DashBoardTemplate heading="Invoice" navList={[]}>
+		<DashBoardTemplate heading="Invoice" navList={MessRouterConfig}>
 			<Subheading text="Total Revenues" />
 			<MessInvoiceCard />
 		</DashBoardTemplate>

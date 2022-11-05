@@ -1,15 +1,10 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import DetailsGroup from "../ProjectComponents/DetailsGroup";
+import { SidebarNavType } from "../props";
 
 import "./DashBoardTemplate.css";
 
-type SidebarNavType = {
-	icon: React.ReactNode;
-	link: string;
-	label: string;
-	isActive: boolean;
-};
 
 function Sidebar(props: { navList: Array<SidebarNavType> }) {
 	const location = useLocation();
@@ -23,7 +18,7 @@ function Sidebar(props: { navList: Array<SidebarNavType> }) {
 				className="SideboardNavLink flex vc m-2"
 				onClick={() => navigate(props.link)}
 			>
-				<div className="SidebarNavLink__icon__box mr-2">{props.icon}</div>
+				<div className="SidebarNavLink__icon__box mr-2">{<props.icon/>}</div>
 				<div className="SidebarNavLink__label__box">
 					<p className="cc_16" style={props.isActive ? {} : { color: "gray" }}>
 						{props.label}

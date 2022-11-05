@@ -5,6 +5,7 @@ import "./Profile.css";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import AssetStore from "../../assets/AssetStore";
 import Notification from "../../ProjectComponents/Notification";
+import StudentRouteConfig from "../RouterConfig";
 
 function InfoCard(props: { icon: React.ReactNode; text: string }) {
 	return (
@@ -20,7 +21,7 @@ function InfoCard(props: { icon: React.ReactNode; text: string }) {
 
 function Profile() {
 	return (
-		<DashBoardTemplate navList={[]} heading="Profile">
+		<DashBoardTemplate navList={StudentRouteConfig} heading="Profile">
 			<div className="Proflie">
 				<p className="cc_27 medium Profile__subheading mb-5">Semester - 4</p>
 

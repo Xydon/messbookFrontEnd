@@ -3,12 +3,13 @@ import AssetStore from "../../assets/AssetStore";
 import ListItem from "../../ProjectComponents/ListItem";
 import Subheading from "../../ProjectComponents/Subheading";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
+import MessRouterConfig from "../routerConfig";
 
 import "./ExtraEntry.css";
 
 function ExtraEntry() {
 	return (
-		<DashBoardTemplate heading="Extra Entry" navList={[]}>
+		<DashBoardTemplate heading="Extra Entry" navList={MessRouterConfig}>
 			<div className="row vc mb-9">
 				<div className="col-3">
 					<Subheading text="Student" type="small" />

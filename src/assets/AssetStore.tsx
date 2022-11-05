@@ -16,7 +16,7 @@ import { ReactComponent as Payments } from "./paymentsIcon.svg";
 import { ReactComponent as Mess } from "./myMessIcon.svg";
 import { ReactComponent as StudentCancel } from "./studentCancellationIcon.svg";
 import { ReactComponent as Students } from "./studentsIcon.svg";
-
+import {ReactComponent as Feedback} from './feedbackIcon.svg'; 
 export default class AssetStore {
 	static readonly Chevron = Chevron;
 	static readonly CircleTick = CircleTick;
@@ -34,4 +34,5 @@ export default class AssetStore {
 	static readonly Mess = Mess;
 	static readonly StudentCancel = StudentCancel;
 	static readonly Students = Students;
+	static readonly Feedback = Feedback; 
 }

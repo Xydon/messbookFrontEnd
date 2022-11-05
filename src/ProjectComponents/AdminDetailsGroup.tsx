@@ -16,7 +16,7 @@ function DetailsContainer({
 
 function DetailsGroupList({ label, text }: { label: string; text: string }) {
 	return (
-		<div className="row" style={{ width: 400 }}>
+		<div className="row mb-1" style={{ width: 400 }}>
 			<div className="col">
 				<p className="cc_18 medium mr-3">{label}</p>
 			</div>
