@@ -8,7 +8,7 @@ function MessProfileList() {
 
 	return (
 		<div
-			className="row vc mr-8 mb-4 cp"
+			className="row vc mr-6 mb-2 cp"
 		>
 			<div className="profileImageBox mr-2"></div>
 			<div className="profileTextBox">
