@@ -30,6 +30,28 @@ function StudentProfileList({ student }: { student: Student }) {
 	);
 }
 
+type FilterConfig = {
+	department?: string;
+	roll_number?: string;
+	name?: string;
+};
+
+function filterStudentList(studeltList: Array<Student>, config: FilterConfig) {
+	return studeltList.filter((student) => {
+		if (config.department && config.department !== student.department) {
+			return false;
+		}
+		if (config.roll_number && config.roll_number !== student.department) {
+			return false;
+		}
+		if (config.name && config.name !== student.department) {
+			return false;
+		}
+
+		return true;
+	});
+}
+
 function StudentView() {
 	const [data, setData] = useState<Array<Student>>([]);
 

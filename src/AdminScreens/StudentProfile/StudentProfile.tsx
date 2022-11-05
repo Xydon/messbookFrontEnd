@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useParams } from "react-router-dom";
-import ButtonMedium from "../../ProjectComponents/Button";
+import {ButtonMedium} from "../../ProjectComponents/Button";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 
 import "./StudentProfile.css";

@@ -17,6 +17,7 @@ import ExtraEntry from "./MessScreens/ExtraEntry/ExtraEntry";
 import Cancellation from "./MessScreens/Cancellation/Cancellation";
 import MessInvoice from "./MessScreens/Invoice/MessInvoice";
 import Feedback from "./MessScreens/Feedback/Feedback";
+import AdminMessView from "./AdminScreens/AdminMessView/AdminMessView";
 
 
 function StudentRoutes() {
@@ -37,8 +38,9 @@ function StudentRoutes() {
 function AdminRoutes() {
   return (
     <Routes>
-			<Route path={"/"} element={<AdminStudentView />} />
+			<Route path={"/asdf"} element={<AdminStudentView />} />
 			<Route path={"/studentProfile/:studentRollNumber"} element={<StudentProfile/>} />
+			<Route path={"/"} element={<AdminMessView/>} />	
 		</Routes>
   )
 }
