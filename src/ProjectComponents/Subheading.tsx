@@ -21,7 +21,12 @@ function CC22(props: { text: string }) {
 }
 
 function Subheading(props: { text: string; type?: "small" | "big" }) {
-	let type = props.type === undefined ? "big" : "small";
+	let type = ''; 
+
+	if(props.type !== undefined) {
+		type = props.type; 
+	} else type = 'big'; 
+
 	return (
 		<>
 			{type == "big" ? <CC27 text={props.text} /> : <CC22 text={props.text} />}

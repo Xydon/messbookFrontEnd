@@ -4,11 +4,10 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 import StudentAdd from "./AdminScreens/StudentAdd/StudentAdd";
-import Student from "./AdminScreens/Student/Student";
+import AdminStudentView from "./AdminScreens/Student/Student";
 import StudentProfile from "./AdminScreens/StudentProfile/StudentProfile";
 import Profile from "./StudentScreens/Profile/Profile";
 import Payment from "./StudentScreens/Payment/Payment";
-import DashBoardTemplate from "./Templates/DashBoardTemplate";
 import Mess from "./StudentScreens/Mess/Mess";
 import MailView from "./MailScreens/MailView/MailView";
 import Invoice from "./StudentScreens/Invoice/Invoice";
@@ -17,6 +16,7 @@ import { StudentView as MessStudentView } from "./MessScreens/StudentView/Studen
 import ExtraEntry from "./MessScreens/ExtraEntry/ExtraEntry";
 import Cancellation from "./MessScreens/Cancellation/Cancellation";
 import MessInvoice from "./MessScreens/Invoice/MessInvoice";
+import Feedback from "./MessScreens/Feedback/Feedback";
 
 
 function StudentRoutes() {
@@ -24,7 +24,7 @@ function StudentRoutes() {
     <Routes>
 			<Route path={"/"} element={<Invoice />} />
 			<Route path={"/profile"} element={<Profile />} />
-			<Route path={"/student"} element={<Student/>} />
+			<Route path={"/student"} element={<AdminStudentView/>} />
 			<Route path={"/mess"} element={<Mess/>} />
 			<Route path={"/mailview"} element={<MailView/>} />
 			<Route path={":studentRoll"} element={<StudentProfile />} />
@@ -37,7 +37,8 @@ function StudentRoutes() {
 function AdminRoutes() {
   return (
     <Routes>
-			<Route path={"/abcd"} element={<Profile />} />
+			<Route path={"/"} element={<AdminStudentView />} />
+			<Route path={"/studentProfile/:studentRollNumber"} element={<StudentProfile/>} />
 		</Routes>
   )
 }
@@ -49,7 +50,8 @@ function MessRoutes() {
 			<Route path={'/a'} element = {<MessStudentView/>} />
 			<Route path={'/b'} element = {<ExtraEntry/>} />
 			<Route path={'/c'} element={<Cancellation/>} />
-			<Route path={'/'} element={<MessInvoice/>} />
+			<Route path={'/messInvoice'} element={<MessInvoice/>} />
+			<Route path={'/'} element={<Feedback/>} />
 		</Routes>
 	)
 }
@@ -74,7 +76,7 @@ function App() {
 	else Comp = <AdminRoutes/>
 
 	return (
-		<MessRoutes/>
+		<AdminRoutes/>
 	);
 }
 

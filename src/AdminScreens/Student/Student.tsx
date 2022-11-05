@@ -5,26 +5,45 @@ import "./Student.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Student from "../../Entities/Student";
+import ExtendibleDashboardTempalte from "../../Templates/ExtendibleDashboardTemplate";
 
-
-function StudentAdd() {
+function StudentProfileList({ student }: { student: Student }) {
 	const navigate = useNavigate();
+
+	return (
+		<div
+			className="row vc mr-3 mb-2 cp"
+			onClick={() => {
+				student.roll_number &&
+					navigate(`/studentProfile/${student.roll_number}`);
+			}}
+		>
+			<div className="profileImageBox mr-2"></div>
+			<div className="profileTextBox">
+				<p className="cc_18">{student.name}</p>
+				<div className="row" style={{ marginTop: -3 }}>
+					<p className="cc_14 mr-2">{student.department}</p>
+					<p className="cc_14">{student.roll_number}</p>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function StudentView() {
 	const [data, setData] = useState<Array<Student>>([]);
 
 	useEffect(() => {
-		try {
-			axios
-			.get("http://localhost:8080/api/admin/students/1")
-			.then((val) => setData(val.data));
-		} catch(e) {
-			console.log(e); 		
-		}
+		axios.get("http://localhost:8080/api/student/all").then((rawData) => {
+			let { data } = rawData;
+			if (data.error.errorCode == "FAILED") return;
+			setData(data.response);
+		});
 	}, []);
 
 	return (
-		<div className="Student row">
-			<div className="Student__sidebar"></div>
-			<div className="Student__content">
+		<ExtendibleDashboardTempalte navList={[]}>
+			<div className=" Student Student__content">
 				<div className="content__heading__row row">
 					<div className="heading__headingText__box">
 						<p className="cc_37 bold ScreenHeading">Students</p>
@@ -68,31 +87,14 @@ function StudentAdd() {
 					<p className="cc_22 medium">Student List</p>
 				</div>
 
-				<div className="Student__studentList__box">
-					{data.map((val, index) => (
-						<div
-							className="Student__studentList__row mb-1 flex vc"
-							onClick={() => {
-								navigate("/20075087");
-							}}
-							key={index}
-						>
-							<div className="studentList__rollNo__box">
-								<p className="studentList__rollNo cc_14 mr-2">{val.roll_number}</p>
-							</div>
-
-							<div className="studentList__info__box">
-								<div className="studentList__info flex vc pl-4 pr-8">
-									<p className="cc_16">{val.name}</p>
-									<p className="cc_16">{val.department}</p>
-								</div>	
-							</div>
-						</div>
+				<div className="Student__studentList__box row">
+					{data.map((student, index) => (
+						<StudentProfileList key={index} student={student} />
 					))}
 				</div>
 			</div>
-		</div>
+		</ExtendibleDashboardTempalte>
 	);
 }
 
-export default StudentAdd;
+export default StudentView;

@@ -1,0 +1,11 @@
+.AdminStudentProfile .StudentProfileImage {
+  height: 100px; 
+  width : 100px; 
+  border-radius : 50px; 
+  background-color : #e7e7e7; 
+}
+
+.AdminStudentProfile .StudentTransactionCard {
+  width : 446px; 
+  background-color: #e7e7e7;
+}
