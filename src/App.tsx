@@ -84,7 +84,7 @@ function App() {
 	else Comp = <AdminRoutes/>
 
 	return (
-		<AdminRoutes/>
+		<StudentRoutes/>
 	);
 }
 

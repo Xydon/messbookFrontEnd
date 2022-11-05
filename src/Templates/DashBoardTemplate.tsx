@@ -1,15 +1,11 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import DetailsGroup from "../ProjectComponents/DetailsGroup";
+import { SidebarNavType } from "../props";
 
 import "./DashBoardTemplate.css";
 
-type SidebarNavType = {
-	icon: React.ReactNode;
-	link: string;
-	label: string;
-	isActive: boolean;
-};
+
 
 function Sidebar(props: { navList: Array<SidebarNavType> }) {
 	const location = useLocation();
