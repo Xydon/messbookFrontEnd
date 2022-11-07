@@ -17,9 +17,14 @@
 }
 
 .DateListRow {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .dateContainer {
   overflow : auto; 
+}
+
+.absentCalculator__list {
+  height : 48px; 
+  border : 1px solid lightgrey; 
 }

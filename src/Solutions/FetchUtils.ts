@@ -25,3 +25,11 @@ export default async function fetchData<T>(
 
   return loadedData; 
 }
+
+
+export class Fetch {
+  static readonly baseUrl = "http://localhost:8080"; 
+  protected getApi(rawApi : string) {
+    return `${Fetch.baseUrl}/${rawApi}`; 
+  }
+}
