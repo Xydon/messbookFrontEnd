@@ -6,7 +6,7 @@ export default class Semester_info {
       readonly hostel_name : string, 
       readonly  mess_id : string ,
       readonly semester_number : number,
-      mess_advance_paid : number
+      readonly mess_advance_paid : number
       
     ) {}
   }
