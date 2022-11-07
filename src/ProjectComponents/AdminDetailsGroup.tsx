@@ -1,3 +1,4 @@
+import { DetailsConfig } from "../props";
 
 function DetailsContainer({
 	heading,
@@ -14,7 +15,7 @@ function DetailsContainer({
 	);
 }
 
-export function DetailsGroupList({ label, text, labelStyle }: { label: string; text?: string, labelStyle ?: React.CSSProperties | undefined }) {
+export function DetailsGroupList({ label, text, labelStyle }: { label: string; text?: string|number, labelStyle ?: React.CSSProperties | undefined }) {
 	return (
 		<div className="row mb-1" style={{ width: 400}}>
 			<div className="col">
@@ -27,10 +28,7 @@ export function DetailsGroupList({ label, text, labelStyle }: { label: string; t
 	);
 }
 
-export default function ConfigDetailsGroup(config: {
-	heading: string;
-	rows: Array<{ label: string; text?: string }>;
-}) {
+export default function ConfigDetailsGroup(config: DetailsConfig) {
 	return (
 		<DetailsContainer heading={config.heading}>
 			{config.rows.map((val, index) => (

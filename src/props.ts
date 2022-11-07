@@ -22,3 +22,17 @@ export class SidebarNavType {
 		readonly isActive: boolean
 	) {}
 }
+
+export class DetailsRowData {
+	constructor(
+		readonly label : string, 
+		readonly text : string | number | undefined
+	) {}
+}
+
+export class DetailsConfig {
+	constructor(
+		readonly heading : string, 
+		readonly rows : Array<DetailsRowData>
+	) {}
+}

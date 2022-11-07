@@ -5,6 +5,14 @@
 	line-height : 1.6;
 }
 
+:root {
+	--shadow-12 : rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.shadow-12 {
+	box-shadow : var(--shadow-12); 
+}
+
 body {
 	background-color: #fff;
 }

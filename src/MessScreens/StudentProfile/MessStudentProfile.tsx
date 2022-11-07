@@ -5,6 +5,7 @@ import AbsentCalculator from "../../ProjectComponents/AbsentCalculator";
 import ConfigDetailsGroup from "../../ProjectComponents/AdminDetailsGroup";
 import Card from "../../ProjectComponents/Card";
 import Subheading from "../../ProjectComponents/Subheading";
+import { DetailsConfig } from "../../props";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import MessRouterConfig from "../routerConfig";
 import { getProfileDetails } from "./fetch";
@@ -25,7 +26,7 @@ function StudentProfile() {
 		}
 	}, []);
 
-	const PersonalDetails = {
+	const PersonalDetails : DetailsConfig = {
 		heading: "Personal Details",
 		rows: [
 			{ label: "phone number", text: student?.phone_number },
