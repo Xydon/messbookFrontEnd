@@ -12,4 +12,5 @@ export default class Student {
     readonly remainder : number, 
     readonly studetn_image_url : string   
   ) {}
+
 }

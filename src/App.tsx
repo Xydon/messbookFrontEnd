@@ -21,6 +21,7 @@ import AdminMessView from "./AdminScreens/AdminMessView/AdminMessView";
 import AdminMessProfile from "./AdminScreens/AdminMessProfile/AdminMessProfile";
 import Semester from "./AdminScreens/Semester/Semester";
 import MessChangeApplication from "./AdminScreens/MessChangeApplcation/MessChangeApplication";
+import MessStudentProfile from "./MessScreens/StudentProfile/MessStudentProfile";
 
 
 function StudentRoutes() {
@@ -59,6 +60,7 @@ function MessRoutes() {
 			<Route path={'/messInvoice'} element={<MessInvoice/>} />
 			<Route path={'/feedback'} element={<Feedback/>} />
 			<Route path={"/mail"} element={<MailView/>} />	
+			<Route path={"/studentProfile/:rollNumber"} element={<MessStudentProfile/>} />
 		</Routes>
 	)
 }
@@ -83,7 +85,7 @@ function App() {
 	else Comp = <AdminRoutes/>
 
 	return (
-		<MessRoutes/>
+		<AdminRoutes/>
 	);
 }
 

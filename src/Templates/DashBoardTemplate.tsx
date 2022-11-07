@@ -61,12 +61,13 @@ function Sidebar(props: { navList: Array<SidebarNavType> }) {
 
 			<div className="LinkRow mt-4 flex hc pr-2">
 				<div className="LinkBox">
-					{props.navList.map((linkInfo) => (
+					{props.navList.map((linkInfo, index) => (
 						<SidebarNavLink
 							icon={linkInfo.icon}
 							link={linkInfo.link}
 							label={linkInfo.label}
 							isActive={isLinkActive(linkInfo.link)}
+							key={index}
 						/>
 					))}
 				</div>

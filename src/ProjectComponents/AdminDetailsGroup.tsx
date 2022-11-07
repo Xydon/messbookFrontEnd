@@ -14,11 +14,11 @@ function DetailsContainer({
 	);
 }
 
-function DetailsGroupList({ label, text }: { label: string; text: string }) {
+export function DetailsGroupList({ label, text, labelStyle }: { label: string; text?: string, labelStyle ?: React.CSSProperties | undefined }) {
 	return (
-		<div className="row mb-1" style={{ width: 400 }}>
+		<div className="row mb-1" style={{ width: 400}}>
 			<div className="col">
-				<p className="cc_18 medium mr-3">{label}</p>
+				<p className="cc_18 medium mr-3" style={labelStyle}>{label}</p>
 			</div>
 			<div className="col-6">
 				<p className="cc_16">{text}</p>
@@ -29,7 +29,7 @@ function DetailsGroupList({ label, text }: { label: string; text: string }) {
 
 export default function ConfigDetailsGroup(config: {
 	heading: string;
-	rows: Array<{ label: string; text: string }>;
+	rows: Array<{ label: string; text?: string }>;
 }) {
 	return (
 		<DetailsContainer heading={config.heading}>
