@@ -16,6 +16,7 @@ import Semester_details from "../../Entities/Semester_details";
 import Department from "../../Entities/Department";
 import { Fetch } from "../../Solutions/FetchUtils";
 import axios from "axios";
+import DateUtils from "../../Solutions/DateUtils";
 
 function InfoCard(props: { icon: React.ReactNode; text: string }) {
 	return (
@@ -54,6 +55,7 @@ function Profile() {
 				"api/semester/latestSemester"
 			);
 			if (semesterDetails === null) return;
+			
 			setSemesterDetails(semesterDetails);
 
 			const departmentData = await Fetch.getRequest<Department>(
@@ -77,10 +79,10 @@ function Profile() {
 	const SemesterDetails: DetailsConfig = {
 		heading: "Semester Details",
 		rows: [
-			new DetailsRowData("Started On", '11/11/11'),
-			new DetailsRowData("Ends On", "11/11/11"),
-			new DetailsRowData("Price Per Meal", 60),
-			new DetailsRowData("Mess Advance Price", 12000),
+			new DetailsRowData("Started On", DateUtils.fetchDateValue(semesterDetails?.start_date)),
+			new DetailsRowData("Ends On", DateUtils.fetchDateValue(semesterDetails?.end_date)),
+			new DetailsRowData("Price Per Meal", semesterDetails?.price_per_meal),
+			new DetailsRowData("Mess Advance Price", semesterDetails?.mess_advance_price),
 		],
 	};
 
@@ -97,10 +99,10 @@ function Profile() {
 	const DepartmentDetails: DetailsConfig = {
 		heading: "Department Details",
 		rows: [
-			new DetailsRowData("Department Name", "C.S.E"),
-			new DetailsRowData("Head Of Department", "SKS"),
-			new DetailsRowData("Location Of Department", "iit bhu"),
-			new DetailsRowData("Phone Number", "96551519819"),
+			new DetailsRowData("Department Name", departmentDetails?.name),
+			new DetailsRowData("Head Of Department", departmentDetails?.hod),
+			new DetailsRowData("Location Of Department", departmentDetails?.location),
+			new DetailsRowData("Phone Number", departmentDetails?.phone),
 		],
 	};
 

@@ -61,4 +61,10 @@ export default class DateUtils {
 		return `${date.getFullYear().toString()}-${date.getMonth()+1}-${date.getDate().toString()}`; 
 	}
 
+	static fetchDateValue(dateJson : Date | undefined) {
+		if(dateJson === undefined) return; 
+		const date = new Date(dateJson); 
+		return date.toLocaleDateString(); 
+	}
+
 }
