@@ -10,8 +10,7 @@ type ResponseWithError<T> = {
 
 export default async function fetchData<T>(
 	url: string,
-	initializer:  (data: T) => T,
-	params: { [key: string]: string }
+	params?: { [key: string]: string }
 ) {
 	const response = await axios.get<ResponseWithError<T>>(url, {params});
   const data = response.data; 
@@ -21,9 +20,7 @@ export default async function fetchData<T>(
     return null; 
   }
 
-  const loadedData = initializer(data.response);  
-
-  return loadedData; 
+  return data.response; 
 }
 
 
@@ -31,5 +28,15 @@ export class Fetch {
   static readonly baseUrl = "http://localhost:8080"; 
   protected getApi(rawApi : string) {
     return `${Fetch.baseUrl}/${rawApi}`; 
+  }
+
+  static getRequest<T>(rawApi : string, params ?: {[key : string] : string}) {
+    const api = `${Fetch.baseUrl}/${rawApi}`; 
+    return fetchData<T>(api, params); 
+  }
+
+  static async get<T>(rawApi : string, params?:{[key : string] : string}) : Promise<T> {
+    const api = `${Fetch.baseUrl}/${rawApi}`; 
+    return (await axios.get<T>(api, {params})).data; 
   }
 }

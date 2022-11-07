@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Profile.css";
 
@@ -10,6 +10,12 @@ import ProfileName from "../../ProjectComponents/ProfileName";
 import ConfigDetailsGroup from "../../ProjectComponents/AdminDetailsGroup";
 import DetailsShadowCard from "../../ProjectComponents/DetailsShadowCard";
 import { DetailsConfig, DetailsRowData } from "../../props";
+import Student from "../../Entities/Student";
+import Hostel from "../../Entities/Hostel";
+import Semester_details from "../../Entities/Semester_details";
+import Department from "../../Entities/Department";
+import { Fetch } from "../../Solutions/FetchUtils";
+import axios from "axios";
 
 function InfoCard(props: { icon: React.ReactNode; text: string }) {
 	return (
@@ -24,11 +30,46 @@ function InfoCard(props: { icon: React.ReactNode; text: string }) {
 }
 
 function Profile() {
+	const [studentDetails, setStudentDetails] = useState<Student>();
+	const [hostelDetails, setHostelDetails] = useState<Hostel>();
+	const [semesterDetails, setSemesterDetails] = useState<Semester_details>();
+	const [departmentDetails, setDepartmentDetails] = useState<Department>();
+
+	useEffect(() => {
+		(async () => {
+			const studentData = await Fetch.getRequest<Student>(
+				"api/student/information/20075087"
+			);
+			if (studentData === null) return;
+			setStudentDetails(studentData);
+
+			const hostelData = await Fetch.get<Hostel>("api/student/hostel", {
+				roll_number: "20075087",
+			});
+			console.log(hostelData); 
+			if (hostelData === null) return;
+			setHostelDetails(hostelData);
+
+			const semesterDetails = await Fetch.getRequest<Semester_details>(
+				"api/semester/latestSemester"
+			);
+			if (semesterDetails === null) return;
+			setSemesterDetails(semesterDetails);
+
+			const departmentData = await Fetch.getRequest<Department>(
+				`api/college/department/${studentData.department}`
+			);
+			if (departmentData === null) return;
+			setDepartmentDetails(departmentData);
+
+		})(); 
+	}, []);
+
 	const PersonalDetails = {
 		heading: "Personal Details",
 		rows: [
-			{ label: "phone number", text: "9369074016" },
-			{ label: "department", text: "cse" },
+			{ label: "phone number", text: studentDetails?.phone_number },
+			{ label: "department", text: studentDetails?.department },
 			{ label: "cmail id", text: "snehal@cmail.com" },
 		],
 	};
@@ -36,32 +77,32 @@ function Profile() {
 	const SemesterDetails: DetailsConfig = {
 		heading: "Semester Details",
 		rows: [
-			new DetailsRowData("Started On", "11/11/11"),
+			new DetailsRowData("Started On", '11/11/11'),
 			new DetailsRowData("Ends On", "11/11/11"),
 			new DetailsRowData("Price Per Meal", 60),
 			new DetailsRowData("Mess Advance Price", 12000),
 		],
 	};
 
-	const HostelDetails : DetailsConfig = {
-		heading :"Hostel Details", 
-		rows : [
-			new DetailsRowData("Hostel Name", "S.N. Bose"), 
-			new DetailsRowData("Warden Name", "Christopher Vance"), 
-			new DetailsRowData("Warden Phone Number", "93699409464"),
-			new DetailsRowData("Hostel Type", "girls hostel")
-		]
-	}
+	const HostelDetails: DetailsConfig = {
+		heading: "Hostel Details",
+		rows: [
+			new DetailsRowData("Hostel Name", hostelDetails?.name),
+			new DetailsRowData("Warden Name", hostelDetails?.warden_name),
+			new DetailsRowData("Warden Phone Number", hostelDetails?.warden_phone),
+			new DetailsRowData("Hostel Type", hostelDetails?.gender),
+		],
+	};
 
-	const DepartmentDetails :DetailsConfig = {
+	const DepartmentDetails: DetailsConfig = {
 		heading: "Department Details",
 		rows: [
-			new DetailsRowData("Department Name", "C.S.E"), 
-			new DetailsRowData("Head Of Department", "SKS"), 
-			new DetailsRowData("Location Of Department", "iit bhu"), 
-			new DetailsRowData("Phone Number", "96551519819")
-		]
-	}
+			new DetailsRowData("Department Name", "C.S.E"),
+			new DetailsRowData("Head Of Department", "SKS"),
+			new DetailsRowData("Location Of Department", "iit bhu"),
+			new DetailsRowData("Phone Number", "96551519819"),
+		],
+	};
 
 	return (
 		<DashBoardTemplate navList={StudentRouteConfig} heading="Profile">

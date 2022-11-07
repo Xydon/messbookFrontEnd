@@ -6,8 +6,6 @@ export default class Semester_details {
       readonly end_date : Date,
       readonly price_per_meal : number,
       readonly mess_advance_price : number
-      
-      
     ) {}
   }
   
