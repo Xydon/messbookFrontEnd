@@ -43,6 +43,26 @@ function Profile() {
 		],
 	};
 
+	const HostelDetails : DetailsConfig = {
+		heading :"Hostel Details", 
+		rows : [
+			new DetailsRowData("Hostel Name", "S.N. Bose"), 
+			new DetailsRowData("Warden Name", "Christopher Vance"), 
+			new DetailsRowData("Warden Phone Number", "93699409464"),
+			new DetailsRowData("Hostel Type", "girls hostel")
+		]
+	}
+
+	const DepartmentDetails :DetailsConfig = {
+		heading: "Department Details",
+		rows: [
+			new DetailsRowData("Department Name", "C.S.E"), 
+			new DetailsRowData("Head Of Department", "SKS"), 
+			new DetailsRowData("Location Of Department", "iit bhu"), 
+			new DetailsRowData("Phone Number", "96551519819")
+		]
+	}
+
 	return (
 		<DashBoardTemplate navList={StudentRouteConfig} heading="Profile">
 			<div className="Proflie">
@@ -69,7 +89,7 @@ function Profile() {
 					</div>
 				</div>
 
-				<div className="row mb-9">
+				<div className="row mb-9 g-2">
 					<div className="col">
 						<Notification />
 					</div>
@@ -78,6 +98,12 @@ function Profile() {
 					</div>
 					<div className="col-6">
 						<DetailsShadowCard details={SemesterDetails} />
+					</div>
+					<div className="col-6">
+						<DetailsShadowCard details={HostelDetails} />
+					</div>
+					<div className="col-6">
+						<DetailsShadowCard details={DepartmentDetails} />
 					</div>
 				</div>
 			</div>

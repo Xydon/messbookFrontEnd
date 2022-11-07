@@ -17,11 +17,11 @@ function DetailsContainer({
 
 export function DetailsGroupList({ label, text, labelStyle }: { label: string; text?: string|number, labelStyle ?: React.CSSProperties | undefined }) {
 	return (
-		<div className="row mb-1" style={{ width: 400}}>
+		<div className="row mb-1 vc" style={{ width: 400}}>
 			<div className="col">
 				<p className="cc_18 medium mr-3" style={labelStyle}>{label}</p>
 			</div>
-			<div className="col-6">
+			<div className="col-5">
 				<p className="cc_16">{text}</p>
 			</div>
 		</div>

@@ -4,7 +4,7 @@ import ConfigDetailsGroup from "./AdminDetailsGroup";
 
 function DetailsShadowCard({ details }: { details: DetailsConfig }) {
 	return (
-		<div className="shadow-12 round-32 p-6">{ConfigDetailsGroup(details)}</div>
+		<div className="shadow-12 round-16 p-5">{ConfigDetailsGroup(details)}</div>
 	);
 }
 
