@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import AssetStore from "../../assets/AssetStore";
+import Student from "../../Entities/Student";
 import ListItem from "../../ProjectComponents/ListItem";
+import StudentProfileList from "../../ProjectComponents/StudentProfileList";
 import Subheading from "../../ProjectComponents/Subheading";
+import { Fetch } from "../../Solutions/FetchUtils";
+import StateSetter from "../../Solutions/StateSetter";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import MessRouterConfig from "../routerConfig";
 
 import "./ExtraEntry.css";
 
 function ExtraEntry() {
+	const [rollNumber, setRollNumber] = useState<string>("");
+	const [extraEntryText, setExtraEntryText] = useState<string>("");
+
+	const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+
+	const handleStudentSelection = () => {
+		if (rollNumber === "") {
+			alert("roll number is not entered");
+			return;
+		}
+
+		Fetch.getRequest<Student>(`api/student/information/${rollNumber}`).then(
+			(student) => student && setSelectedStudent(student)
+		);
+	};
+
 	return (
 		<DashBoardTemplate heading="Extra Entry" navList={MessRouterConfig}>
 			<div className="row vc mb-9">
 				<div className="col-3">
 					<Subheading text="Student" type="small" />
-					<p className="cc_16">none selected</p>
+					<p className="cc_16">
+						{selectedStudent === null ? (
+							"none selected"
+						) : (
+							<StudentProfileList {...selectedStudent} />
+						)}
+					</p>
 				</div>
 				<div className="col-4 flex">
 					<div className="searchBox selectionSearchBox pl-2 pr-2 vc mr-2">
@@ -21,10 +47,16 @@ function ExtraEntry() {
 							type="number"
 							className="input-clear cc_16"
 							placeholder="enter roll number"
+							onInput={(e) => {
+								setRollNumber(StateSetter.filterInput(e));
+							}}
 						/>
 					</div>
 
-					<div className="button_size_m bg_black round-8 label_white pl-3 pr-3">
+					<div
+						className="button_size_m bg_black round-8 label_white pl-3 pr-3"
+						onClick={handleStudentSelection}
+					>
 						<p className="cc_16">submit</p>
 					</div>
 				</div>
@@ -37,9 +69,12 @@ function ExtraEntry() {
 			<div className="row mb-8">
 				<div className="searchBox selectionSearchBox pl-2 pr-2 vc mr-2 col-4">
 					<input
-						type="number"
+						type="text"
 						className="input-clear cc_16"
-						placeholder="enter roll number"
+						placeholder="enter item name"
+						onInput={(e) => {
+							setExtraEntryText(StateSetter.filterInput(e));
+						}}
 					/>
 				</div>
 

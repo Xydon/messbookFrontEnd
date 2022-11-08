@@ -83,13 +83,14 @@ function StudentProfile() {
 			</div>
 			<div className="row mb-3 g-1">
 				<div className="box">
-					{feedback.map((data) => (
+					{feedback.map((data, index) => (
 						<FeedbackCard
 							month={DateUtils.monthMapper(
 								new Date(data.month_of_comment).getMonth()
 							)}
 							text={data.text}
 							rating={data.rating}
+							key={index}
 						/>
 					))}
 				</div>
