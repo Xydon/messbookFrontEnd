@@ -37,21 +37,17 @@ function Profile() {
 				roll_number: "20075087",
 			});
 			console.log(hostelData);
-			if (hostelData === null) return;
-			setHostelDetails(hostelData);
+			if (hostelData !== null) setHostelDetails(hostelData);
 
 			const semesterDetails = await Fetch.getRequest<Semester_details>(
 				"api/semester/latestSemester"
 			);
-			if (semesterDetails === null) return;
-
-			setSemesterDetails(semesterDetails);
+			if (semesterDetails !== null) setSemesterDetails(semesterDetails);
 
 			const departmentData = await Fetch.getRequest<Department>(
 				`api/college/department/${studentData.department}`
 			);
-			if (departmentData === null) return;
-			setDepartmentDetails(departmentData);
+			if (departmentData !== null) setDepartmentDetails(departmentData);
 
 			const semesterInfoData = await Fetch.getRequest<Semester_info>(
 				"api/student/semester_info",
@@ -139,9 +135,9 @@ function Profile() {
 					</div>
 				</div>
 
-				<div className="row mb-9 g-2" style={{marginLeft : -16}}>
+				<div className="row mb-9 g-2" style={{ marginLeft: -16 }}>
 					<div className="col">
-						<Notification />
+						<Notification benefactor={'student'} roll_number="20075087"/>
 					</div>
 					<div className="col-6">
 						<DetailsShadowCard details={PersonalDetails} />

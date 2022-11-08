@@ -1,4 +1,4 @@
-export default class Notification {
+export default class NotificationEntity {
 
     constructor(
       readonly id : string, 
