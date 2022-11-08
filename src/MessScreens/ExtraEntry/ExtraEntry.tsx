@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AssetStore from "../../assets/AssetStore";
+import ExtraItemWithCost from "../../Entities/ExtraItemWithCost";
+import Mess_extra_entry from "../../Entities/Mess_extra_entry";
 import Student from "../../Entities/Student";
 import ListItem from "../../ProjectComponents/ListItem";
 import StudentProfileList from "../../ProjectComponents/StudentProfileList";
@@ -10,12 +12,18 @@ import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import MessRouterConfig from "../routerConfig";
 
 import "./ExtraEntry.css";
+import DataFetching from "./fetch";
 
 function ExtraEntry() {
+	const fetcher = new DataFetching();
+
 	const [rollNumber, setRollNumber] = useState<string>("");
 	const [extraEntryText, setExtraEntryText] = useState<string>("");
 
 	const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+	const [extraEntriesOfToday, setExtraEntriesOfToday] = useState<
+		Array<ExtraItemWithCost>
+	>([]);
 
 	const handleStudentSelection = () => {
 		if (rollNumber === "") {
@@ -26,6 +34,24 @@ function ExtraEntry() {
 		Fetch.getRequest<Student>(`api/student/information/${rollNumber}`).then(
 			(student) => student && setSelectedStudent(student)
 		);
+
+		fetcher
+			.getListOfExtraEntries(rollNumber, "XKLSEJF")
+			.then((data) => data && setExtraEntriesOfToday(data));
+	};
+
+	const createExtraEntry = () => {
+		if (rollNumber === "" || extraEntryText === "") return;
+		fetcher
+			.createExtraEntry(rollNumber, "XKLSEJF", extraEntryText)
+			.then((data) => {
+				if (data) {
+					setExtraEntriesOfToday((prev) => [
+						...prev,
+						{id : 'null', item_name: extraEntryText, price: 20 },
+					]);
+				}
+			});
 	};
 
 	return (
@@ -33,13 +59,11 @@ function ExtraEntry() {
 			<div className="row vc mb-9">
 				<div className="col-3">
 					<Subheading text="Student" type="small" />
-					<p className="cc_16">
 						{selectedStudent === null ? (
 							"none selected"
 						) : (
 							<StudentProfileList {...selectedStudent} />
 						)}
-					</p>
 				</div>
 				<div className="col-4 flex">
 					<div className="searchBox selectionSearchBox pl-2 pr-2 vc mr-2">
@@ -79,7 +103,10 @@ function ExtraEntry() {
 				</div>
 
 				<div className="box">
-					<div className="button_size_m bg_black round-8 label_white pl-3 pr-3">
+					<div
+						className="button_size_m bg_black round-8 label_white pl-3 pr-3"
+						onClick={createExtraEntry}
+					>
 						<p className="cc_16">submit</p>
 					</div>
 				</div>
@@ -87,56 +114,17 @@ function ExtraEntry() {
 
 			<div className="row">
 				<div className="extraItemsListBox col-8 mb-5  ">
-					<ListItem size="s" outline={true}>
-						<p className="cc_16 medium ml-2">Item Name</p>
-						<div className="flex mr-2">
-							<p className="cc_16 light">Rs. 20</p>
-							<AssetStore.Close className="ml-4 cp" />
-						</div>
-					</ListItem>
-					<ListItem size="s" outline={true}>
-						<p className="cc_16 medium ml-2">Item Name</p>
-						<div className="flex mr-2">
-							<p className="cc_16 light">Rs. 20</p>
-							<AssetStore.Close className="ml-4 cp" />
-						</div>
-					</ListItem>
-					<ListItem size="s" outline={true}>
-						<p className="cc_16 medium ml-2">Item Name</p>
-						<div className="flex mr-2">
-							<p className="cc_16 light">Rs. 20</p>
-							<AssetStore.Close className="ml-4 cp" />
-						</div>
-					</ListItem>
-					<ListItem size="s" outline={true}>
-						<p className="cc_16 medium ml-2">Item Name</p>
-						<div className="flex mr-2">
-							<p className="cc_16 light">Rs. 20</p>
-							<AssetStore.Close className="ml-4 cp" />
-						</div>
-					</ListItem>
-					<ListItem size="s" outline={true}>
-						<p className="cc_16 medium ml-2">Item Name</p>
-						<div className="flex mr-2">
-							<p className="cc_16 light">Rs. 20</p>
-							<AssetStore.Close className="ml-4 cp" />
-						</div>
-					</ListItem>
-					<ListItem size="s" outline={true}>
-						<p className="cc_16 medium ml-2">Item Name</p>
-						<div className="flex mr-2">
-							<p className="cc_16 light">Rs. 20</p>
-							<AssetStore.Close className="ml-4 cp" />
-						</div>
-					</ListItem>
-					<ListItem size="s" outline={true}>
-						<p className="cc_16 medium ml-2">Item Name</p>
-						<div className="flex mr-2">
-							<p className="cc_16 light">Rs. 20</p>
-							<AssetStore.Close className="ml-4 cp" />
-						</div>
-					</ListItem>
+					{extraEntriesOfToday.map((extraEntry, index) => (
+						<ListItem size="s" outline={true} key={index}>
+							<p className="cc_16 medium ml-2">{extraEntry.item_name}</p>
+							<div className="flex mr-2">
+								<p className="cc_16 light">Rs. {extraEntry.price}</p>
+								<AssetStore.Close className="ml-4 cp" />
+							</div>
+						</ListItem>
+					))}
 				</div>
+				<div className="col"></div>
 			</div>
 		</DashBoardTemplate>
 	);

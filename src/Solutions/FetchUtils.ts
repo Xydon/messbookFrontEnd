@@ -46,6 +46,25 @@ export class Fetch {
 		return fetchData<T>(api, params);
 	}
 
+	static async postRequest<T, X = {}>(
+		rawApi: string,
+		data?: X,
+		params?: { [key: string]: string }
+	) {
+		const api = `${Fetch.baseUrl}/${rawApi}`;
+		const res = await axios
+			.post<ResponseWithError<T>>(api, data, { params });
+		const data_1 = res.data;
+		if (data_1.error.errorCode !== "SUCCESS") {
+			if (data_1.error.errorMessages.length !== 0)
+				alert(data_1.error.errorMessages.at(0));
+			else
+				alert("cannot fetch");
+			return null;
+		}
+		return data_1.response;
+	}
+
 	static async get<T>(
 		rawApi: string,
 		params?: { [key: string]: string }
