@@ -16,7 +16,7 @@ export default async function fetchData<T>(
   const data = response.data; 
 
   if(data.error.errorCode !== 'SUCCESS') {
-    // alert(data.error.errorMessages.at(0)); 
+    alert(data.error.errorMessages.at(0)); 
     return null; 
   }
 
