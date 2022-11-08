@@ -45,6 +45,7 @@ async function postMarkAbsent(postData: MessAbsentForm) {
 	const verdictError = verdict.data.error;
 	if (verdictError.errorCode !== "SUCCESS") {
 		alert(verdictError.errorMessages[verdictError.errorMessages.length - 1]);
+		return; 
 	}
 
 	alert('success'); 

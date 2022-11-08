@@ -3,10 +3,6 @@
   width : 142px; 
 }
 
-.mailContextButton--active {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
-}
-
 .mailContainerRow {
   max-height : 560px; 
   overflow : auto; 
