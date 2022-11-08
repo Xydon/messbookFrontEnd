@@ -46,7 +46,7 @@ function MessProfile() {
 	return (
 		<DashBoardTemplate heading="Profile" navList={MessRouterConfig}>
 			<div className="row mb-5">
-				<div className="box p-2">
+				<div className="box p-2 col-6">
 					<Notification benefactor={undefined} />
 				</div>
 

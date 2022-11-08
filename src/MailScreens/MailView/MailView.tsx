@@ -208,15 +208,6 @@ function MailView() {
 				</div>
 			</div>
 
-			{/* {showOverlay ? (
-				<div className="overlay hc vc">
-					<MailDisplay closeFunction={setShowOverlay} mail={selectedMail} />
-				</div>
-			) : (
-				<div className="overlay hc vc">
-					<MailEntry closeFunction={setShowOverlay} />
-				</div>
-			)} */}
 			{showOverlay !== "none" && (
 				<div className="overlay hc vc">
 					{showOverlay === "create" && (

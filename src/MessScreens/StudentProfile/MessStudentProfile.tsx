@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Feedback from "../../Entities/Feedback";
 import Student from "../../Entities/Student";
 import AbsentCalculator from "../../ProjectComponents/AbsentCalculator";
 import ConfigDetailsGroup from "../../ProjectComponents/AdminDetailsGroup";
 import Card from "../../ProjectComponents/Card";
+import FeedbackCard from "../../ProjectComponents/FeedbackCard";
 import Subheading from "../../ProjectComponents/Subheading";
 import { DetailsConfig } from "../../props";
+import DateUtils from "../../Solutions/DateUtils";
+import { Fetch } from "../../Solutions/FetchUtils";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import MessRouterConfig from "../routerConfig";
 import { getProfileDetails } from "./fetch";
@@ -15,6 +19,7 @@ import "./MessStudentProfile.css";
 function StudentProfile() {
 	// data
 	const [student, setStudent] = useState<Student>();
+	const [feedback, setFeedback] = useState<Array<Feedback>>([]);
 
 	const { rollNumber } = useParams();
 
@@ -24,9 +29,16 @@ function StudentProfile() {
 				(data) => data !== null && setStudent(data)
 			);
 		}
+		rollNumber &&
+			Fetch.getRequest<Array<Feedback>>("api/mess/feedback/fetch", {
+				mess_id: "XKLSEJF",
+				student_roll_number: rollNumber,
+			}).then((data) => {
+				data && setFeedback(data);
+			});
 	}, []);
 
-	const PersonalDetails : DetailsConfig = {
+	const PersonalDetails: DetailsConfig = {
 		heading: "Personal Details",
 		rows: [
 			{ label: "phone number", text: student?.phone_number },
@@ -71,16 +83,15 @@ function StudentProfile() {
 			</div>
 			<div className="row mb-3 g-1">
 				<div className="box">
-					<Card width={350}>
-						<p className="cc_14">
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore
-							voluptatem ratione blanditiis quae, obcaecati provident, earum sed
-							numquam ipsum nulla, incidunt quo sapiente alias debitis
-							dignissimos. Temporibus consequuntur repellat harum doloribus
-							ullam qui labore libero, vitae totam nihil est nemo eum, modi ut,
-							at similique dolore veritatis saepe? Veniam, maiores.
-						</p>
-					</Card>
+					{feedback.map((data) => (
+						<FeedbackCard
+							month={DateUtils.monthMapper(
+								new Date(data.month_of_comment).getMonth()
+							)}
+							text={data.text}
+							rating={data.rating}
+						/>
+					))}
 				</div>
 			</div>
 		</DashBoardTemplate>
