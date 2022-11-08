@@ -1,33 +1,34 @@
 import React from "react";
 import AbsentCalculator from "../../ProjectComponents/AbsentCalculator";
 import DetailsGroup from "../../ProjectComponents/DetailsGroup";
+import DetailsShadowCard from "../../ProjectComponents/DetailsShadowCard";
 import FeedbackCard from "../../ProjectComponents/FeedbackCard";
 import ListItem from "../../ProjectComponents/ListItem";
+import { DetailsConfig, DetailsRowData } from "../../props";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import StudentRouteConfig from "../RouterConfig";
 
 import "./Mess.css";
 
 function Mess() {
+	const MessDetails: DetailsConfig = {
+		heading: "Details",
+		rows: [
+			new DetailsRowData("name", "Shyam Sundar"),
+			new DetailsRowData("Phone Number", "989981921831"),
+			new DetailsRowData("Hostel", "Sn Bose"),
+		],
+	};
 	return (
 		<DashBoardTemplate heading="Mess" navList={StudentRouteConfig}>
 			<p className="cc_27 mb-8 semi_bold">Semester - 4th</p>
 
-			<div className="row">
-				<div className="col-5">
-					<DetailsGroup
-						heading="Details"
-						data={[{ label: "Hostel", text: "Sn Bose" }]}
-					/>
+			<div className="row g-2">
+				<div className="col">
+					<DetailsShadowCard details={MessDetails} />
 				</div>
 				<div className="col">
-					<DetailsGroup
-						heading="Mess Operator"
-						data={[
-							{ label: "Name", text: "Shyam Sundar Chaudhary" },
-							{ label: "phone-number", text: "9369074016" },
-						]}
-					/>
+					<AbsentCalculator/>
 				</div>
 			</div>
 
@@ -35,7 +36,7 @@ function Mess() {
 				<p className="cc_27 medium">Feedbacks</p>
 			</div>
 
-			<div className="row mb-10 FeedbackCardContainer">
+			<div className="flex mb-10 MessDetails__FeedbackCardContainer">
 				<FeedbackCard month={"October"} text={"good food"} rating={3} />
 				<FeedbackCard month={"October"} text={"good food"} rating={3} />
 				<FeedbackCard month={"October"} text={"good food"} rating={3} />
@@ -55,33 +56,23 @@ function Mess() {
 
 			<div className="row mb-10">
 				<div className="ExtraItemBox col-7 mb-1">
-					<ListItem size="s">
+					<ListItem size="s" outline={true}>
 						<p className="cc_16 medium">Paneer Rice</p>
 						<p className="cc_16">20</p>
 					</ListItem>
-					<ListItem size="s">
+					<ListItem size="s" outline={true}>
 						<p className="cc_16 medium">Paneer Rice</p>
 						<p className="cc_16">20</p>
 					</ListItem>
-					<ListItem size="s">
+					<ListItem size="s" outline={true}>
 						<p className="cc_16 medium">Paneer Rice</p>
 						<p className="cc_16">20</p>
 					</ListItem>
-					<ListItem size="s">
+					<ListItem size="s" outline={true}>
 						<p className="cc_16 medium">Paneer Rice</p>
 						<p className="cc_16">20</p>
 					</ListItem>
 				</div>
-			</div>
-
-			<div className="row mt-5 mb-4">
-				<div className="box">
-					<p className="cc_27 medium">Absent Calendar</p>
-				</div>
-			</div>
-
-			<div className="row mb-10">
-				<AbsentCalculator />
 			</div>
 
 			<div className="row mb-6">
