@@ -36,6 +36,7 @@
   height : 80%; 
   border-radius : 32px; 
   background-color: white;
+  flex-direction: column  ;
 }
 
 .senderInputRow {
@@ -72,4 +73,23 @@
   border : 1px solid rgb(220, 220, 220); 
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   justify-content: flex-end;
+}
+
+.mailContent {
+  flex : 1; 
+}
+
+.mail__textArea {
+  width : 100%; 
+  border : none; 
+  font-size : 16px; 
+  font-family : 'Inter'; 
+  line-height : 1.6; 
+  height : 100%; 
+  flex : 1; 
+}
+
+.mail__textArea:focus {
+  border : none; 
+  outline : none; 
 }
