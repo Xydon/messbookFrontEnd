@@ -15,7 +15,7 @@ const fetcher = new FetchUtils();
 
 function MailEntry(props: {
 	closeFunction: React.Dispatch<React.SetStateAction<MailDisplayContextType>>;
-	mailSetter: React.Dispatch<React.SetStateAction<Mail[]>>;
+	mailSetter?: React.Dispatch<React.SetStateAction<Mail[]>>;
 }) {
 	const [mail, setMail] = useState<Mail>(
 		new Mail("", "abc@cmail.com", "", "", new Date(), false, false, "", "")
@@ -42,13 +42,15 @@ function MailEntry(props: {
 		const res = fetcher.postMail(mail);
 
 		res.then((data) => {
-			data &&
+			if(data) {
+				props.mailSetter &&
 				props.mailSetter((prev) => {
 					return [...prev, data];
 				});
+				props.closeFunction('none'); 
+			}
 		});
 	};
-
 
 	return (
 		<div className="MailEntryContainer flex">
@@ -218,7 +220,10 @@ function MailView() {
 			{showOverlay !== "none" && (
 				<div className="overlay hc vc">
 					{showOverlay === "create" && (
-						<MailEntry closeFunction={setShowOverlay} mailSetter={setMails} />
+						<MailEntry
+							closeFunction={setShowOverlay}
+							mailSetter={selectedButton === "sent" ? setMails : undefined}
+						/>
 					)}
 					{showOverlay === "view" && (
 						<MailDisplay closeFunction={setShowOverlay} mail={selectedMail} />
