@@ -1,6 +1,7 @@
 import React from "react";
 import { ButtonLarge, ButtonMedium } from "../../ProjectComponents/Button";
 import ExtendibleDashboardTempalte from "../../Templates/ExtendibleDashboardTemplate";
+import AdminRouterConfig from "../routerConfig";
 
 import "./AdminMessView.css";
 
@@ -24,7 +25,7 @@ function MessProfileList() {
 
 function AdminMessView() {
 	return (
-		<ExtendibleDashboardTempalte navList={[]}>
+		<ExtendibleDashboardTempalte navList={AdminRouterConfig}>
 			<div className="AdminMessView Dashboard__content">
 				<div className="row Dashboard__heading__row sb">
           <p className="cc_37 semi_bold">Mess</p>

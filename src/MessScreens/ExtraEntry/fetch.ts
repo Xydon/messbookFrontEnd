@@ -30,5 +30,10 @@ export default class DataFetching extends Fetch {
 		return Fetch.postRequest<boolean, Mess_extra_entry>(api, extra_entry);
 	}
 
-  
+  deleteExtraEntry(id : string) {
+    const api = `api/mess/deleteExtraEntry`; 
+    return Fetch.postRequest<boolean>(api, {}, {id}); 
+  }
+
+
 }

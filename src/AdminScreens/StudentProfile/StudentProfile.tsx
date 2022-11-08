@@ -1,26 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import Mess from "../../Entities/Mess";
+import Semester_info from "../../Entities/Semester_info";
+import Student from "../../Entities/Student";
 import ConfigDetailsGroup from "../../ProjectComponents/AdminDetailsGroup";
-import {ButtonMedium} from "../../ProjectComponents/Button";
+import { ButtonMedium } from "../../ProjectComponents/Button";
+import { Fetch } from "../../Solutions/FetchUtils";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
+import AdminRouterConfig from "../routerConfig";
 
 import "./StudentProfile.css";
-
-
-function MessTransactionCard() {
-	return (
-		<div className="TransactionCardContainer round-16 p-3 vc">
-			<div className="box sb" style={{ width: "100%" }}>
-				<p className="cc_27 bold">2000</p>
-				<div className="box">
-					<p className="cc_14">paid</p>
-					<p className="cc_16">12/12/2022</p>
-				</div>
-			</div>
-		</div>
-	);
-}
 
 function StudentTransactionCard() {
 	return (
@@ -42,12 +32,42 @@ function StudentTransactionCard() {
 
 function StudentProfile() {
 	const { studentRollNumber } = useParams();
+	const [student, setStudent] = useState<Student>();
+	const [semesterDetails, setSemesterDetails] = useState<Semester_info>();
+	const [messDetails, setMessDetails] = useState<Mess>();
+
+	useEffect(() => {
+		if(studentRollNumber == undefined) return; 
+		(async () => {
+			const studentData = await Fetch.getRequest<Student>(
+				`api/student/information/${studentRollNumber}`
+			);
+
+			if (studentData == null) return;
+			setStudent(studentData);
+
+			const semesterData = await Fetch.getRequest<Semester_info>(
+				`api/student/semester_info`,
+				{
+					roll_number: studentRollNumber,
+				}
+			);
+			if (semesterData == null) return;
+			setSemesterDetails(semesterData);
+
+			const messData = await Fetch.getRequest<Mess>("api/mess/fetch", {
+				mess_id: semesterData.mess_id,
+			});
+			if (messData == null) return;
+			setMessDetails(messData);
+		})();
+	}, []);
 
 	const PersonalDetails = {
 		heading: "Personal Details",
 		rows: [
-			{ label: "phone number", text: "9369074016" },
-			{ label: "department", text: "cse" },
+			{ label: "phone number", text: student?.phone_number },
+			{ label: "department", text: student?.department },
 			{ label: "cmail id", text: "snehal@cmail.com" },
 		],
 	};
@@ -55,14 +75,14 @@ function StudentProfile() {
 	const SemesterDetails = {
 		heading: "Semester Details",
 		rows: [
-			{ label: "semester number", text: "1" },
-			{ label: "mess name", text: "rajkumar yadav" },
-			{ label: "hostel allocated", text: "Sn Bose" },
+			{ label: "semester number", text: semesterDetails?.semester_number },
+			// { label: "mess name", text: semesterDetails. },
+			{ label: "hostel allocated", text: semesterDetails?.hostel_name },
 		],
 	};
 
 	return (
-		<DashBoardTemplate heading="Student Profile" navList={[]}>
+		<DashBoardTemplate heading="Student Profile" navList={AdminRouterConfig}>
 			<div className="AdminStudentProfile">
 				<div className="row mb-9">
 					<div className="box mr-3">
@@ -70,9 +90,9 @@ function StudentProfile() {
 					</div>
 					<div className="box vc">
 						<div>
-							<p className="cc_22 medium">Snehal Kumar Singh</p>
+							<p className="cc_22 medium">{student?.name}</p>
 							<p className="cc_16 medium" style={{ marginTop: -3 }}>
-								20075087
+								{student?.roll_number}
 							</p>
 						</div>
 					</div>
@@ -111,8 +131,8 @@ function StudentProfile() {
 				<div className="AdminStudentTransactions mb-10">
 					<div className="row">
 						<div className="box">
-							<p className="cc_24 medium mb-3">Transactions</p>
-							<StudentTransactionCard />
+							{/* <p className="cc_24 medium mb-3">Transactions</p> */}
+							{/* <StudentTransactionCard /> */}
 						</div>
 					</div>
 				</div>

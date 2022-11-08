@@ -1,10 +1,14 @@
 import React from 'react'
+import DashBoardTemplate from '../../Templates/DashBoardTemplate';
+import AdminRouterConfig from '../routerConfig';
 
 import "./AddSemester.css"; 
 
 function AddSemester() {
   return (
-    <div>AddSemester</div>
+    <DashBoardTemplate navList={AdminRouterConfig} heading={'Add Semester'}>
+      
+    </DashBoardTemplate>
   )
 }
 

@@ -48,22 +48,23 @@ function ExtraEntry() {
 				if (data) {
 					setExtraEntriesOfToday((prev) => [
 						...prev,
-						{id : 'null', item_name: extraEntryText, price: 20 },
+						{ id: "null", item_name: extraEntryText, price: 20 },
 					]);
 				}
 			});
 	};
+
 
 	return (
 		<DashBoardTemplate heading="Extra Entry" navList={MessRouterConfig}>
 			<div className="row vc mb-9">
 				<div className="col-3">
 					<Subheading text="Student" type="small" />
-						{selectedStudent === null ? (
-							"none selected"
-						) : (
-							<StudentProfileList {...selectedStudent} />
-						)}
+					{selectedStudent === null ? (
+						"none selected"
+					) : (
+						<StudentProfileList {...selectedStudent} />
+					)}
 				</div>
 				<div className="col-4 flex">
 					<div className="searchBox selectionSearchBox pl-2 pr-2 vc mr-2">
@@ -119,7 +120,16 @@ function ExtraEntry() {
 							<p className="cc_16 medium ml-2">{extraEntry.item_name}</p>
 							<div className="flex mr-2">
 								<p className="cc_16 light">Rs. {extraEntry.price}</p>
-								<AssetStore.Close className="ml-4 cp" />
+								<AssetStore.Close
+									className="ml-4 cp"
+									onClick={() => {
+										fetcher.deleteExtraEntry(extraEntry.id).then((data) => {
+											setExtraEntriesOfToday((prev) =>
+												prev.filter((val) => val.id !== extraEntry.id)
+											);
+										});
+									}}
+								/>
 							</div>
 						</ListItem>
 					))}

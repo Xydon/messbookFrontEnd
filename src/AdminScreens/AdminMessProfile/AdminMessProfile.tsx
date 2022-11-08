@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import ConfigDetailsGroup from "../../ProjectComponents/AdminDetailsGroup";
 import Subheading from "../../ProjectComponents/Subheading";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
+import AdminRouterConfig from "../routerConfig";
 
 import "./AdminMessProfile.css";
 
@@ -55,7 +56,7 @@ function AdminMessProfile() {
 	};
 
 	return (
-		<DashBoardTemplate navList={[]} heading="Mess Profile">
+		<DashBoardTemplate navList={AdminRouterConfig} heading="Mess Profile">
 			<div className="row vc mb-10">
 				<div
 					className="box mr-4"

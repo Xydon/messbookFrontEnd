@@ -1,5 +1,6 @@
 import React from "react";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
+import AdminRouterConfig from "../routerConfig";
 
 import "./MessChangeApplication.css";
 
@@ -52,7 +53,7 @@ function MessChangeApplcationCard() {
 
 function MessChangeApplication() {
 	return (
-		<DashBoardTemplate heading="Mess Change Application" navList={[]}>
+		<DashBoardTemplate heading="Mess Change Application" navList={AdminRouterConfig}>
 			<MessChangeApplcationCard />
 		</DashBoardTemplate>
 	);

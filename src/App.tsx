@@ -42,10 +42,11 @@ function AdminRoutes() {
 			<Route path={"/students"} element={<AdminStudentView />} />
 			<Route path={"/studentProfile/:studentRollNumber"} element={<StudentProfile/>} />
 			<Route path={"/asdfd"} element={<AdminMessView/>} />	
-			<Route path={"/profile"} element={<AdminMessProfile/>} />	
+			<Route path={"/mess"} element={<AdminMessProfile/>} />	
 			<Route path={"/semester"} element={<Semester/>} />
 			<Route path={"/mail"} element={<MailView/>} />
-			<Route path={"/"} element={<MessChangeApplication/>} />
+			<Route path={"/messChangeApplication"} element={<MessChangeApplication/>} />
+			<Route path={"/studentAdd"} element={<StudentAdd/>} />
 		</Routes>
   )
 }
@@ -85,7 +86,7 @@ function App() {
 	else Comp = <AdminRoutes/>
 
 	return (
-		<MessRoutes/>
+		<AdminRoutes/>
 	);
 }
 

@@ -1,31 +1,52 @@
 import React from "react";
+import Subheading from "../../ProjectComponents/Subheading";
+import DashBoardTemplate from "../../Templates/DashBoardTemplate";
+import AdminRouterConfig from "../routerConfig";
 
 import "./StudentAdd.css";
 
 function StudentAdd() {
 	return (
-		<div className="StudentAdd row">
-			<div className="StudentAdd__sidebar"></div>
-			<div className="StudentAdd__content">
-				<div className="Dashboard__heading__row row">
-					<div className="heading__headingText__box">
-						<p className="cc_37 bold ScreenHeading">Add Student</p>
-					</div>
+		<DashBoardTemplate navList={AdminRouterConfig} heading={"Add Student"}>
+			<Subheading text="Student Personal Details" />
+			<div className="row g-1 mb-4">
+				<div className="col-5">
+					<input
+						type="text"
+						className="form__input mb-1 round-8 height-44"
+						placeholder="roll_number"
+					/>
 				</div>
-
-				<div className="content__form__box">
-					<p className="formHeading cc_27 mb-5 medium">Enter Details</p>
-					<input type="number" className="input_size_m round-8 mb-2 form__input" placeholder="roll number" />
-					<input type="text" className="input_size_m round-8 mb-2 form__input form__input_name" placeholder="name" />
-					<input type="number" className="input_size_m round-8 mb-2 form__input form__input_phoneNumber" placeholder="phone number" />
-					<input type="text" className="input_size_m round-8 mb-3 form__input form__input_gender" placeholder="gender" />
-
-					<div className="button_size_m  label_white ph-5 submitButton round-16">
-						<p className="cc_16">submit</p>
-					</div>
+				<div className="col-5">
+					<input type="text" className="form__input mb-1 round-8 height-44" placeholder="name" />
+				</div>
+				<div className="col-5">
+					<input
+						type="text"
+						className="form__input mb-1 round-8 height-44"
+						placeholder="phone number"
+					/>
+				</div>
+				<div className="col-5">
+					<input
+						type="text"
+						className="form__input mb-1 round-8  height-44"
+						placeholder="department"
+					/>
+				</div>
+				<div className="col-5">
+					<input
+						type="text"
+						className="form__input mb-1 round-8  height-44"
+						placeholder="gender"
+					/>
 				</div>
 			</div>
-		</div>
+
+			<div className="button_size_l bg_black label_white round-16 pl-3 pr-3">
+				<p className="cc_16">enter student</p>
+			</div>
+		</DashBoardTemplate>
 	);
 }
 

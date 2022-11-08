@@ -2,6 +2,7 @@ import React from "react";
 import { ButtonLarge } from "../../ProjectComponents/Button";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import ExtendibleDashboardTempalte from "../../Templates/ExtendibleDashboardTemplate";
+import AdminRouterConfig from "../routerConfig";
 
 import "./Semester.css";
 
@@ -16,7 +17,7 @@ function SemesterViewCard() {
 
 function Semester() {
 	return (
-		<ExtendibleDashboardTempalte navList={[]}>
+		<ExtendibleDashboardTempalte navList={AdminRouterConfig}>
 			<div className="SemesterView Dashboard__content">
 				<div className="row Dashboard__heading__row sb">
 					<p className="cc_37 semi_bold">Semesters</p>

@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Student from "../../Entities/Student";
 import ExtendibleDashboardTempalte from "../../Templates/ExtendibleDashboardTemplate";
+import AdminRouterConfig from "../routerConfig";
+import StateSetter from "../../Solutions/StateSetter";
 
 function StudentProfileList({ student }: { student: Student }) {
 	const navigate = useNavigate();
@@ -38,15 +40,31 @@ type FilterConfig = {
 
 function filterStudentList(studeltList: Array<Student>, config: FilterConfig) {
 	return studeltList.filter((student) => {
-		if (config.department && config.department !== student.department) {
+		console.log(config.department, student.department);
+
+		if (
+			config.department &&
+			!student.department
+				.toLowerCase()
+				.includes(config.department.toLowerCase())
+		)
 			return false;
-		}
-		if (config.roll_number && config.roll_number !== student.department) {
+
+		if (
+			config.roll_number &&
+			!student.roll_number
+				.toLowerCase()
+				.includes(config.roll_number.toLowerCase())
+		)
 			return false;
-		}
-		if (config.name && config.name !== student.department) {
+
+		if (
+			config.name &&
+			!student.name
+				.toLowerCase()
+				.includes(config.name.toLowerCase())
+		)
 			return false;
-		}
 
 		return true;
 	});
@@ -54,6 +72,11 @@ function filterStudentList(studeltList: Array<Student>, config: FilterConfig) {
 
 function StudentView() {
 	const [data, setData] = useState<Array<Student>>([]);
+	const [filterConfig, setFilterConfig] = useState<FilterConfig>({});
+
+	console.log(filterConfig);
+
+	const setter = new StateSetter<FilterConfig>(setFilterConfig);
 
 	useEffect(() => {
 		axios.get("http://localhost:8080/api/student/all").then((rawData) => {
@@ -64,7 +87,7 @@ function StudentView() {
 	}, []);
 
 	return (
-		<ExtendibleDashboardTempalte navList={[]}>
+		<ExtendibleDashboardTempalte navList={AdminRouterConfig}>
 			<div className=" Student Student__content">
 				<div className="content__heading__row row">
 					<div className="heading__headingText__box">
@@ -89,16 +112,19 @@ function StudentView() {
 						type="number"
 						className="input_size_m round-8 mb-2 mr-1 form__input filterControl__rollNumber"
 						placeholder="roll number"
+						onInput={setter.setLabel("roll_number")}
 					/>
 					<input
 						type="text"
 						className="input_size_m round-8 mb-2 mr-1 form__input filterControl__name"
 						placeholder="name"
+						onInput={setter.setLabel("name")}
 					/>
 					<input
-						type="number"
+						type="text"
 						className="input_size_m round-8 mb-2 mr-2 form__input filterControl__semester"
-						placeholder="semester"
+						placeholder="department"
+						onInput={setter.setLabel("department")}
 					/>
 					<div className="button_size_m round-16 label_white filterControlApplyButton">
 						<p className="cc_16">apply</p>
@@ -110,7 +136,7 @@ function StudentView() {
 				</div>
 
 				<div className="Student__studentList__box row">
-					{data.map((student, index) => (
+					{filterStudentList(data, filterConfig).map((student, index) => (
 						<StudentProfileList key={index} student={student} />
 					))}
 				</div>
