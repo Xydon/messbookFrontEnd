@@ -20,9 +20,10 @@ import Feedback from "./MessScreens/Feedback/Feedback";
 import AdminMessView from "./AdminScreens/AdminMessView/AdminMessView";
 import AdminMessProfile from "./AdminScreens/AdminMessProfile/AdminMessProfile";
 import Semester from "./AdminScreens/Semester/Semester";
-import MessChangeApplication from "./AdminScreens/MessChangeApplcation/MessChangeApplication";
 import MessStudentProfile from "./MessScreens/StudentProfile/MessStudentProfile";
 import MessView from "./AdminScreens/Mess/Mess";
+import CommonNotification from "./AdminScreens/CommonNotification/CommonNotification";
+import MessChangeApplication from "./AdminScreens/MessChangeApplication/MessChangeApplication";
 
 
 function StudentRoutes() {
@@ -48,6 +49,7 @@ function AdminRoutes() {
 			<Route path={"/mail"} element={<MailView/>} />
 			<Route path={"/messChangeApplication"} element={<MessChangeApplication/>} />
 			<Route path={"/studentAdd"} element={<StudentAdd/>} />
+			<Route path={"/notification"} element={<CommonNotification/>} />
 		</Routes>
   )
 }
