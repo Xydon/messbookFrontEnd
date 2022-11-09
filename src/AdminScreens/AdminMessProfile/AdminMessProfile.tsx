@@ -1,37 +1,68 @@
 import { motion, useSpring } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import Feedback from "../../Entities/Feedback";
+import Mess from "../../Entities/Mess";
+import Student from "../../Entities/Student";
 import ConfigDetailsGroup from "../../ProjectComponents/AdminDetailsGroup";
+import FeedbackCard from "../../ProjectComponents/FeedbackCard";
+import StudentProfileList from "../../ProjectComponents/StudentProfileList";
 import Subheading from "../../ProjectComponents/Subheading";
+import DateUtils from "../../Solutions/DateUtils";
+import { Fetch } from "../../Solutions/FetchUtils";
+import StateSetter from "../../Solutions/StateSetter";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import AdminRouterConfig from "../routerConfig";
 
 import "./AdminMessProfile.css";
 
-function StudentProfileList() {
-	return (
-		<div className="studentProfileListContainer row vc">
-			<div className="profileImageBox mr-2"></div>
-			<div className="profileTextBox">
-				<p className="cc_18">Snehal Kumar Singh</p>
-				<p className="cc_14">Hostel Name</p>
-			</div>
-		</div>
-	);
+function filterStudentList(studentList: Array<Student>, filterControl: string) {
+	return studentList.filter((student) => {
+		if (filterControl === "") return true;
+		if (!Number.isNaN(parseInt(filterControl))) {
+			return student.roll_number.includes(filterControl);
+		} else {
+			return student.name.toLowerCase().includes(filterControl.toLowerCase());
+		}
+	});
 }
-function FeedbackCard() {
-	return (
-		<div className="FeedbackCardContainer round-8 p-2 mr-2">
-			<p className="cc_14 mb-2">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam excepturi
-				alias molestias rem obcaecati quo cumque explicabo consequatur repellat
-				deleniti!
-			</p>
-			<div className="row"></div>
-		</div>
-	);
+
+const calcAverageRating = (feedbacks : Array<Feedback>) => {
+	let sum = 0; 
+	feedbacks.forEach(feedback => sum+=feedback.rating); 
+	return sum/feedbacks.length; 
 }
 
 function AdminMessProfile() {
+	const [mess, setMess] = useState<Mess>();
+	const [studentEnrolled, setStudentEntrolled] = useState<Array<Student>>([]);
+	const [filterControl, setFilterControl] = useState<string>("");
+	const [feedbacks, setFeedbacks] = useState<Array<Feedback>>([]);
+
+	const { messId } = useParams();
+
+	useEffect(() => {
+		if (messId === undefined) return;
+		(async () => {
+			const mess = await Fetch.getRequest<Mess>("api/mess/fetch", {
+				mess_id: messId,
+			});
+			mess && setMess(mess);
+
+			const studentsEnrolled = await Fetch.getRequest<Array<Student>>(
+				"api/mess/students",
+				{ mess_id: messId }
+			);
+			studentsEnrolled && setStudentEntrolled(studentsEnrolled);
+
+			const feedbacks = await Fetch.getRequest<Array<Feedback>>(
+				"api/mess/feedback/fetch/all",
+				{ mess_id: messId }
+			);
+			feedbacks && setFeedbacks(feedbacks);
+		})();
+	}, []);
+
 	let xRef = useRef<number>(0);
 	let x = useSpring(xRef.current);
 
@@ -49,8 +80,8 @@ function AdminMessProfile() {
 	const PersonalDetails = {
 		heading: "Personal Details",
 		rows: [
-			{ label: "id", text: "aslas920" },
-			{ label: "phone number", text: "933651651" },
+			{ label: "id", text: mess?.id },
+			{ label: "phone number", text: mess?.phone_number },
 			{ label: "cmail", text: "mess@cmail.com" },
 		],
 	};
@@ -70,9 +101,9 @@ function AdminMessProfile() {
 
 				<div className="box">
 					<p className="cc_24 medium" style={{ marginBottom: -4 }}>
-						Name
+						{mess?.name}
 					</p>
-					<p className="cc_16">hostel</p>
+					<p className="cc_16">{mess?.hostel_name}</p>
 				</div>
 			</div>
 
@@ -88,6 +119,9 @@ function AdminMessProfile() {
 							type="text"
 							className="serachBoxInput cc_18 medium"
 							placeholder="search"
+							onInput={(e) => {
+								setFilterControl(StateSetter.filterInput(e));
+							}}
 						/>
 					</div>
 				</div>
@@ -99,35 +133,27 @@ function AdminMessProfile() {
 			</div>
 
 			<div className="row studentListRow mt-5 mb-8">
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
-				<StudentProfileList />
+				{filterStudentList(studentEnrolled, filterControl).map((val, index) => (
+					<div className="box p-1" style={{ width: 200 }} key={index}>
+						<StudentProfileList {...val} />
+					</div>
+				))}
 			</div>
 
 			<div className="feedbackSection mb-10">
-				<Subheading text="October" />
 				<Subheading text="Feedbacks" type="small" />
 				<div className="feedbackCollectionRow mb-1">
 					<motion.div className="feedbackCollectionBox flex " style={{ x }}>
-						<FeedbackCard />
-						<FeedbackCard />
-						<FeedbackCard />
-						<FeedbackCard />
-						<FeedbackCard />
-						<FeedbackCard />
-						<FeedbackCard />
-						<FeedbackCard />
-						<FeedbackCard />
-						<FeedbackCard />
+						{feedbacks.map((feedback, index) => (
+							<FeedbackCard
+								key={index}
+								month={DateUtils.monthMapper(
+									new Date(feedback.month_of_comment).getMonth()
+								)}
+								text={feedback.text}
+								rating={feedback.rating}
+							/>
+						))}
 					</motion.div>
 				</div>
 				<div className="row mb-8">
@@ -147,7 +173,7 @@ function AdminMessProfile() {
 
 				<div className="row">
 					<div className="box">
-						<p className="cc_22">Average Rating - 4.5</p>
+						<p className="cc_22">Average Rating - {calcAverageRating(feedbacks)}</p>
 					</div>
 				</div>
 			</div>

@@ -42,8 +42,7 @@ function AdminRoutes() {
     <Routes>
 			<Route path={"/students"} element={<AdminStudentView />} />
 			<Route path={"/studentProfile/:studentRollNumber"} element={<StudentProfile/>} />
-			<Route path={"/asdfd"} element={<AdminMessView/>} />	
-			<Route path={"/mess/profile"} element={<AdminMessProfile/>} />	
+			<Route path={"/mess/:messId"} element={<AdminMessProfile/>} />	
 			<Route path={"/mess"} element={<MessView/>} />	
 			<Route path={"/semester"} element={<Semester/>} />
 			<Route path={"/mail"} element={<MailView/>} />

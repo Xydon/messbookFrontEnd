@@ -9,24 +9,26 @@ import AdminRouterConfig from "../routerConfig";
 import "./Mess.css";
 
 type FilterConfig = {
-  id ?:string, 
-  name ?:string, 
-  hostel ?: string
+	id?: string;
+	name?: string;
+	hostel?: string;
 };
 
-const check = (a : string|undefined, b : string) => {
-  return a && !b.toLowerCase().includes(a.toLowerCase()); 
-}
+const check = (a: string | undefined, b: string) => {
+	return a && !b.toLowerCase().includes(a.toLowerCase());
+};
 
-function filterMessList(messList : Array<MessEntity>, config : FilterConfig) {
-  return messList.filter(mess => {
-    if(check(config.id, mess.id)) {
-      return false; 
-    }
-    if(check(config.hostel, mess.hostel_name)) {return false; }
-    if(check(config.name, mess.name)) return false; 
-    return true; 
-  })
+function filterMessList(messList: Array<MessEntity>, config: FilterConfig) {
+	return messList.filter((mess) => {
+		if (check(config.id, mess.id)) {
+			return false;
+		}
+		if (check(config.hostel, mess.hostel_name)) {
+			return false;
+		}
+		if (check(config.name, mess.name)) return false;
+		return true;
+	});
 }
 
 function MessView() {
@@ -95,26 +97,28 @@ function MessView() {
 
 				<div className="Student__studentList__box row g-2">
 					{filterMessList(data, filterConfig).map((student, index) => (
-						<div className="col-3 vc cp" key={index}>
-							<div className="vc flex">
-								<div
-									style={{
-										width: 86,
-										height: 86,
-										borderRadius: 56,
-										border: "1px solid lightgray",
-										marginRight: 16,
-									}}
-								></div>
-                <div>
-                  <p className="cc_16 semi_bold">{student.name}</p>
-                  <div className="flex sb">
-                    <p className="cc_14 mr-1">{student.hostel_name}</p>
-                    <p className="cc_14">{student.id}</p>
-                  </div>
-                </div>
+						<Link to={`/mess/${student.id}`}>
+							<div className="col-3 vc cp" key={index}>
+								<div className="vc flex">
+									<div
+										style={{
+											width: 86,
+											height: 86,
+											borderRadius: 56,
+											border: "1px solid lightgray",
+											marginRight: 16,
+										}}
+									></div>
+									<div>
+										<p className="cc_16 semi_bold">{student.name}</p>
+										<div className="flex sb">
+											<p className="cc_14 mr-1">{student.hostel_name}</p>
+											<p className="cc_14">{student.id}</p>
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
+						</Link>
 					))}
 				</div>
 			</div>
