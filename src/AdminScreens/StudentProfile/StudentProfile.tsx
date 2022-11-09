@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import Feedback from "../../Entities/Feedback";
 import Mess from "../../Entities/Mess";
 import Semester_info from "../../Entities/Semester_info";
 import Student from "../../Entities/Student";
 import ConfigDetailsGroup from "../../ProjectComponents/AdminDetailsGroup";
 import { ButtonMedium } from "../../ProjectComponents/Button";
+import DetailsShadowCard from "../../ProjectComponents/DetailsShadowCard";
+import FeedbackCard from "../../ProjectComponents/FeedbackCard";
+import Subheading from "../../ProjectComponents/Subheading";
+import { DetailsConfig } from "../../props";
+import DateUtils from "../../Solutions/DateUtils";
 import { Fetch } from "../../Solutions/FetchUtils";
 import DashBoardTemplate from "../../Templates/DashBoardTemplate";
 import AdminRouterConfig from "../routerConfig";
@@ -35,9 +41,10 @@ function StudentProfile() {
 	const [student, setStudent] = useState<Student>();
 	const [semesterDetails, setSemesterDetails] = useState<Semester_info>();
 	const [messDetails, setMessDetails] = useState<Mess>();
+	const [feedbacks, setFeedbacks] = useState<Array<Feedback>>([]);
 
 	useEffect(() => {
-		if(studentRollNumber == undefined) return; 
+		if (studentRollNumber == undefined) return;
 		(async () => {
 			const studentData = await Fetch.getRequest<Student>(
 				`api/student/information/${studentRollNumber}`
@@ -60,6 +67,14 @@ function StudentProfile() {
 			});
 			if (messData == null) return;
 			setMessDetails(messData);
+
+			Fetch.getRequest<Array<Feedback>>("api/mess/feedback/fetch", {
+				mess_id: "XKLSEJF",
+				student_roll_number: studentRollNumber,
+			}).then((data) => {
+				data && setFeedbacks(data);
+			});
+			
 		})();
 	}, []);
 
@@ -81,6 +96,14 @@ function StudentProfile() {
 		],
 	};
 
+	const MessDetails: DetailsConfig = {
+		heading: "Mess Details",
+		rows: [
+			{ label: "mess name", text: messDetails?.name },
+			{ label: "phone number", text: messDetails?.phone_number },
+		],
+	};
+
 	return (
 		<DashBoardTemplate heading="Student Profile" navList={AdminRouterConfig}>
 			<div className="AdminStudentProfile">
@@ -98,9 +121,12 @@ function StudentProfile() {
 					</div>
 				</div>
 
-				<div className="row mb-10">
+				<div className="row mb-10 g-2">
 					<div className="col-6">{ConfigDetailsGroup(PersonalDetails)}</div>
 					<div className="col-6">{ConfigDetailsGroup(SemesterDetails)}</div>
+					<div className="col-6">
+						<DetailsShadowCard details={MessDetails} />
+					</div>
 				</div>
 
 				<div className="form mb-10">
@@ -131,8 +157,17 @@ function StudentProfile() {
 				<div className="AdminStudentTransactions mb-10">
 					<div className="row">
 						<div className="box">
-							{/* <p className="cc_24 medium mb-3">Transactions</p> */}
-							{/* <StudentTransactionCard /> */}
+							<Subheading text="Feedbacks" />
+							{feedbacks.map((data, index) => (
+								<FeedbackCard
+									month={DateUtils.monthMapper(
+										new Date(data.month_of_comment).getMonth()
+									)}
+									text={data.text}
+									rating={data.rating}
+									key={index}
+								/>
+							))}
 						</div>
 					</div>
 				</div>
